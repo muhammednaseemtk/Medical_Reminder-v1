@@ -13,7 +13,7 @@ class AddContainer extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(text,style: TextStyle(fontSize: 16),),
+          child: Text(text,style: TextStyle(fontWeight: FontWeight.w500),),
         ),
         SizedBox(height: 5,),
         TextField(cursorColor: AppColors.txtColor,

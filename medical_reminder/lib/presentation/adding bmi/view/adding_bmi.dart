@@ -19,8 +19,11 @@ class _AddingBmiState extends State<AddingBmi> {
         title: Text('Add BMI',style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
       ),
-      body: Column(
-        children: [],
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+          ],
+        ),
       ),
     );
   }

@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:icon/icon.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 
 class MedicineCard extends StatelessWidget {

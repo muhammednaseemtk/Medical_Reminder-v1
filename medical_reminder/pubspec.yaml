@@ -38,7 +38,6 @@ dependencies:
   hive_flutter: ^1.1.0
   horizontal_week_calendar: ^0.0.20
   enefty_icons: ^1.0.9
-  icon: ^2.2.1
 
 dev_dependencies:
   flutter_test:
