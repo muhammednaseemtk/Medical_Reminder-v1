@@ -6,6 +6,7 @@ import 'package:medical_reminder/presentation/adding%20medicine/widget/date_box.
 
 class AddingMedicine extends StatefulWidget {
   const AddingMedicine({super.key});
+
   @override
   State<AddingMedicine> createState() => _AddingMedicineState();
 }
@@ -13,6 +14,10 @@ class AddingMedicine extends StatefulWidget {
 class _AddingMedicineState extends State<AddingMedicine> {
   DateTime? startDate;
   DateTime? endDate;
+  String format(DateTime? date) {
+    if (date == null) return "Select";
+    return "${date.day}/${date.month}/${date.year}";
+  }
 
   Future<void> pickStartDate() async {
     final date = await showDatePicker(
@@ -20,12 +25,24 @@ class _AddingMedicineState extends State<AddingMedicine> {
       initialDate: DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: AppColors.icon1,
+              onPrimary: AppColors.white,
+              onSurface: AppColors.txtColor,
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(foregroundColor: AppColors.icon1),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
-
     if (date != null) {
-      setState(() {
-        startDate = date;
-      });
+      setState(() => startDate = date);
     }
   }
 
@@ -35,18 +52,26 @@ class _AddingMedicineState extends State<AddingMedicine> {
       initialDate: startDate ?? DateTime.now(),
       firstDate: DateTime(2000),
       lastDate: DateTime(2100),
+      builder: (context, child) {
+        return Theme(
+          data: Theme.of(context).copyWith(
+            colorScheme: ColorScheme.light(
+              primary: AppColors.icon1,
+              onPrimary: AppColors.white,
+              onSurface: AppColors.txtColor,
+            ),
+            textButtonTheme: TextButtonThemeData(
+              style: TextButton.styleFrom(foregroundColor: AppColors.icon1),
+            ),
+          ),
+          child: child!,
+        );
+      },
     );
 
     if (date != null) {
-      setState(() {
-        endDate = date;
-      });
+      setState(() => endDate = date);
     }
-  }
-
-  String format(DateTime? date) {
-    if (date == null) return "Select";
-    return "${date.day}/${date.month}/${date.year}";
   }
 
   @override
@@ -62,6 +87,7 @@ class _AddingMedicineState extends State<AddingMedicine> {
         ),
         centerTitle: true,
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(12.0),
         child: SingleChildScrollView(
@@ -69,7 +95,7 @@ class _AddingMedicineState extends State<AddingMedicine> {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 11),
+                padding: EdgeInsets.symmetric(horizontal: 11),
                 child: Text(
                   "Medicine Type",
                   style: TextStyle(fontWeight: FontWeight.w500),
@@ -97,6 +123,7 @@ class _AddingMedicineState extends State<AddingMedicine> {
                   ),
                 ],
               ),
+
               SizedBox(height: 30),
               AddContainer(text: 'Medicine Name', texts: 'Enter medicine name'),
               SizedBox(height: 15),
