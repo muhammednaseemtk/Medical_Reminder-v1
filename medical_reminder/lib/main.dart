@@ -7,6 +7,7 @@ import 'package:medical_reminder/presentation/adding%20appointment/view/adding_a
 import 'package:medical_reminder/presentation/adding%20bmi/view/adding_bmi.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/view/adding_medicine.dart';
 import 'package:medical_reminder/presentation/adding%20view%20report/view/adding_view_report.dart';
+import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 import 'package:medical_reminder/presentation/check%20bmi/view/check_bmi.dart';
 import 'package:medical_reminder/presentation/home/view/home_screen.dart';
 import 'package:medical_reminder/presentation/auth/login/view/login_screen.dart';
@@ -22,6 +23,9 @@ void main() async {
   runApp(MyApp());
   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
+
+  Hive.registerAdapter(UserModelAdapter());
+  await Hive.openBox<UserModel>('users');
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

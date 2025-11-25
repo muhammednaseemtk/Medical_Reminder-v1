@@ -56,7 +56,7 @@ class MedicineCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(15),
               ),
               child: Icon(
-                ,
+                Icons.medication_outlined,
                 color: iconColor,
                 size: 25,
               ),

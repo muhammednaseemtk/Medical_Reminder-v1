@@ -5,6 +5,8 @@ import 'package:medical_reminder/core/constant/app_constant.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/common/widget/custom_text_field.dart';
+import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
+import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 import 'package:medical_reminder/presentation/auth/sign_up/view/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -94,12 +96,23 @@ class _LoginScreenState extends State<LoginScreen> {
                       SizedBox(height: 10),
                       CommonButton(
                         text: textData['LoginBtnText'],
-                        onTap: () {
+                        onTap: () async {
                           if (formKey.currentState!.validate()) {
-                            Navigator.pushReplacementNamed(
+                            final userFunc = UserFunctions();
+                            final email = _emailController.text.trim();
+                            final password = _passwordController.text.trim();
+                            final user = await userFunc.getUser(email);
+                            bool sucess = userFunc.loginUser(email, password);
+                            if(sucess){
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Sucess')));
+                              Navigator.pushReplacementNamed(
                               context,
                               AppRoute.mainPage,
                             );
+                            }else{
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invalid Credantional')));
+                            }
+                            
                           }
                         },
                         textColor: AppColors.white,

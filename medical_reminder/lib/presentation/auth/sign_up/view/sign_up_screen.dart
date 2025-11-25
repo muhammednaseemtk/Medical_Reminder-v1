@@ -4,7 +4,9 @@ import 'package:medical_reminder/common/widget/custom_text_field.dart';
 import 'package:medical_reminder/core/constant/app_constant.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
+import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
 import 'package:medical_reminder/presentation/auth/login/view/login_screen.dart';
+import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({super.key});
@@ -83,7 +85,30 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       SizedBox(height: 15),
                       CommonButton(
                         text: signUpText['SignUpBtnText'],
-                        onTap: () {},
+                        onTap: () async {
+                          if (formKey.currentState!.validate()) {
+                            final userFunc = UserFunctions();
+                            final newUser = UserModel(
+                              username: _usernameController.text.trim(),
+                              email: _emailController.text.trim(),
+                              password: _passwordController.text.trim(),
+                            );
+                            final check = await userFunc.addUser(newUser);
+                            if (check) {
+                              Navigator.pushReplacementNamed(
+                                context,
+                                AppRoute.login,
+                              );
+                              ScaffoldMessenger.of(
+                                context,
+                              ).showSnackBar(SnackBar(content: Text('Sucess')));
+                            } else {
+                              ScaffoldMessenger.of(
+                                context,
+                              ).showSnackBar(SnackBar(content: Text('Something when wrong')));
+                            }
+                          }
+                        },
                         textColor: AppColors.white,
                         bgColor: AppColors.btnColor,
                       ),
