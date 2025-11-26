@@ -3,6 +3,7 @@ import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/adding medicine/widget/adding_container.dart';
 import 'package:medical_reminder/presentation/adding view report/widget/add_report.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/widget/date_box.dart';
+import 'package:medical_reminder/presentation/adding%20medicine/widget/frequency_drop_down.dart';
 
 class AddingMedicine extends StatefulWidget {
   const AddingMedicine({super.key});
@@ -14,6 +15,9 @@ class AddingMedicine extends StatefulWidget {
 class _AddingMedicineState extends State<AddingMedicine> {
   DateTime? startDate;
   DateTime? endDate;
+
+  List<String> selectedTimes = [];
+
   String format(DateTime? date) {
     if (date == null) return "Select";
     return "${date.day}/${date.month}/${date.year}";
@@ -32,9 +36,6 @@ class _AddingMedicineState extends State<AddingMedicine> {
               primary: AppColors.icon1,
               onPrimary: AppColors.white,
               onSurface: AppColors.txtColor,
-            ),
-            textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(foregroundColor: AppColors.icon1),
             ),
           ),
           child: child!,
@@ -59,9 +60,6 @@ class _AddingMedicineState extends State<AddingMedicine> {
               primary: AppColors.icon1,
               onPrimary: AppColors.white,
               onSurface: AppColors.txtColor,
-            ),
-            textButtonTheme: TextButtonThemeData(
-              style: TextButton.styleFrom(foregroundColor: AppColors.icon1),
             ),
           ),
           child: child!,
@@ -145,7 +143,20 @@ class _AddingMedicineState extends State<AddingMedicine> {
                   ),
                 ],
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 10),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 11),
+                child: Text(
+                  'Select Frequency',
+                  style: TextStyle(fontWeight: FontWeight.w500),
+                ),
+              ),
+              SizedBox(height: 5,),
+              FrequencyDropDown(
+                onTimeChanged: (list) {
+                  selectedTimes = list;
+                },
+              ),
             ],
           ),
         ),

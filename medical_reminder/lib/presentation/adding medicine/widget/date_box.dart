@@ -31,7 +31,7 @@ class DateBox extends StatelessWidget {
             width: 175,
             padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
             decoration: BoxDecoration(
-              borderRadius: BorderRadius.circular(10),
+              borderRadius: BorderRadius.circular(15),
               border: Border.all(color: AppColors.lightShade),
             ),
 
