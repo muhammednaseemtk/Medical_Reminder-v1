@@ -72,6 +72,7 @@ class _AddingMedicineState extends State<AddingMedicine> {
       setState(() => endDate = date);
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -150,16 +151,22 @@ class _AddingMedicineState extends State<AddingMedicine> {
                   style: TextStyle(fontWeight: FontWeight.w500),
                 ),
               ),
-              SizedBox(height: 5,),
+              SizedBox(height: 5),
               FrequencyDropDown(
                 onTimeChanged: (list) {
                   selectedTimes = list;
                 },
-              ),SizedBox(height: 5,),
+              ),
+              SizedBox(height: 5),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 38),
-                child: CommonButton(text: 'Save', onTap: (){}, textColor: AppColors.white, bgColor: AppColors.icon1),
-              )
+                child: CommonButton(
+                  text: 'Save',
+                  onTap: () {},
+                  textColor: AppColors.white,
+                  bgColor: AppColors.icon1,
+                ),
+              ),
             ],
           ),
         ),

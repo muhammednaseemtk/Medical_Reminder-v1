@@ -1,4 +1,4 @@
-import 'package:hive_flutter/adapters.dart';
+import 'package:hive/hive.dart';
 
 part 'medicine_model.g.dart';
 
