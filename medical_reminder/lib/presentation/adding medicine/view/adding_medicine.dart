@@ -158,7 +158,7 @@ class _AddingMedicineState extends State<AddingMedicine> {
               ),SizedBox(height: 5,),
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 38),
-                child: CommonButton(text: 'Save', onTap: (){}, textColor: AppColors.white, bgColor: AppColors.icon1),
+                child: CommonButton(text: 'Save Medicine', onTap: (){}, textColor: AppColors.white, bgColor: AppColors.icon1),
               )
             ],
           ),

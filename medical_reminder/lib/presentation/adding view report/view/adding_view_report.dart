@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:medical_reminder/common/widget/custom_text_field.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/adding%20view%20report/widget/add_report.dart';
+import 'package:medical_reminder/presentation/adding%20view%20report/widget/upload_report.dart';
 
 class AddingViewReport extends StatefulWidget {
   const AddingViewReport({super.key});
@@ -31,7 +32,9 @@ class _AddingViewReportState extends State<AddingViewReport> {
             SizedBox(height: 15,),
             AddContainer(text: 'Date of Report', texts: 'mm/dd/yyyy'),
             SizedBox(height: 15,),
-            AddContainer(text: 'Doctor`s Name(optional)', texts: 'e.g., Dr Smith')
+            AddContainer(text: 'Doctor`s Name(optional)', texts: 'e.g., Dr Smith'),
+            SizedBox(height: 15,),
+            UploadReport(onTap: (){})
           ],
         ),
       ),

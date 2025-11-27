@@ -38,6 +38,8 @@ dependencies:
   hive_flutter: ^1.1.0
   horizontal_week_calendar: ^0.0.20
   enefty_icons: ^1.0.9
+  image_picker: ^1.2.1
+  file_picker: ^10.3.7
 
 dev_dependencies:
   flutter_test:
