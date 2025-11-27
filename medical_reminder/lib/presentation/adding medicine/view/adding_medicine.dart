@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:medical_reminder/common/widget/common_button.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/adding medicine/widget/adding_container.dart';
 import 'package:medical_reminder/presentation/adding view report/widget/add_report.dart';
@@ -71,7 +72,6 @@ class _AddingMedicineState extends State<AddingMedicine> {
       setState(() => endDate = date);
     }
   }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -121,12 +121,11 @@ class _AddingMedicineState extends State<AddingMedicine> {
                   ),
                 ],
               ),
-
-              SizedBox(height: 30),
+              SizedBox(height: 25),
               AddContainer(text: 'Medicine Name', texts: 'Enter medicine name'),
               SizedBox(height: 15),
               AddContainer(text: 'Dosage', texts: 'Enter the dosage'),
-              SizedBox(height: 25),
+              SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -156,7 +155,11 @@ class _AddingMedicineState extends State<AddingMedicine> {
                 onTimeChanged: (list) {
                   selectedTimes = list;
                 },
-              ),
+              ),SizedBox(height: 5,),
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 38),
+                child: CommonButton(text: 'Save', onTap: (){}, textColor: AppColors.white, bgColor: AppColors.icon1),
+              )
             ],
           ),
         ),

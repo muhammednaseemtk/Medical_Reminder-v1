@@ -56,9 +56,16 @@ class _FrequencyDropDownState extends State<FrequencyDropDown> {
               borderRadius: BorderRadius.circular(15),
             ),
           ),
+          dropdownColor: AppColors.white,
+          borderRadius: BorderRadius.circular(15),
           value: selectedFrequency,
           items: frequencyOptions
-              .map((f) => DropdownMenuItem(value: f, child: Text(f)))
+              .map(
+                (f) => DropdownMenuItem(
+                  value: f,
+                  child: Text(f),
+                ),
+              )
               .toList(),
           onChanged: (value) {
             selectedFrequency = value;

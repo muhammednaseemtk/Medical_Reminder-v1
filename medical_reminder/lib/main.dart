@@ -5,6 +5,7 @@ import 'package:medical_reminder/presentation/Notification/view/notification_scr
 import 'package:medical_reminder/presentation/add%20appointment/view/appointment_screen.dart';
 import 'package:medical_reminder/presentation/adding%20appointment/view/adding_appointment.dart';
 import 'package:medical_reminder/presentation/adding%20bmi/view/adding_bmi.dart';
+import 'package:medical_reminder/presentation/adding%20medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/view/adding_medicine.dart';
 import 'package:medical_reminder/presentation/adding%20view%20report/view/adding_view_report.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
@@ -20,12 +21,14 @@ import 'package:medical_reminder/presentation/splash/view/splash_screen.dart';
 import 'package:medical_reminder/presentation/statistics/view/statistics_screen.dart';
 
 void main() async {
-  runApp(MyApp());
-  WidgetsFlutterBinding.ensureInitialized();
+   WidgetsFlutterBinding.ensureInitialized();
   await Hive.initFlutter();
 
   Hive.registerAdapter(UserModelAdapter());
+  Hive.registerAdapter(MedicineModelAdapter());
   await Hive.openBox<UserModel>('users');
+  await Hive.openBox<MedicineModel> ('medicines');
+  runApp(MyApp());
 }
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
