@@ -1,11 +1,11 @@
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
-import 'package:medical_reminder/core/constant/app_constant.dart';
+
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/Notification/view/notification_screen.dart';
+
 import 'package:medical_reminder/presentation/home/widget/appointment_card.dart';
-import 'package:medical_reminder/presentation/home/widget/bottom_nav_bar.dart';
+
 import 'package:medical_reminder/presentation/home/widget/medicine_card.dart';
 import 'package:medical_reminder/presentation/home/widget/menu_card.dart';
 

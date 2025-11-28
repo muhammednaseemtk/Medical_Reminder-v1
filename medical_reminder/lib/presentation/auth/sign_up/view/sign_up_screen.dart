@@ -5,7 +5,6 @@ import 'package:medical_reminder/core/constant/app_constant.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
-import 'package:medical_reminder/presentation/auth/login/view/login_screen.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 
 class SignUpScreen extends StatefulWidget {
