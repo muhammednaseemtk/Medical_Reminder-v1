@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/common/widget/common_button.dart';
 import 'package:medical_reminder/common/widget/custom_text_field.dart';
+import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/adding view report/widget/report_date.dart';
 import 'package:medical_reminder/presentation/adding%20view%20report/widget/add_report.dart';
@@ -13,6 +14,8 @@ class AddingViewReport extends StatefulWidget {
 }
 
 class _AddingViewReportState extends State<AddingViewReport> {
+  TextEditingController drNameController = TextEditingController();
+  TextEditingController nameController = TextEditingController();
   TextEditingController dateController = TextEditingController();
 
   Future<DateTime?> ReportDatePicker(BuildContext context) {
@@ -48,7 +51,7 @@ class _AddingViewReportState extends State<AddingViewReport> {
           children: [
             Column(
               children: [
-                AddContainer(text: 'Report Name', texts: 'Blood Test Results'),
+                AddContainer(text: 'Report Name', texts: 'Blood Test Results', controller: nameController,),
                 SizedBox(height: 20),
                 GestureDetector(
                   onTap: () async {
@@ -65,19 +68,21 @@ class _AddingViewReportState extends State<AddingViewReport> {
                       text: 'Date of Report',
                       texts: dateController.text.isEmpty
                           ? 'mm/dd/yyyy'
-                          : dateController.text,
+                          : dateController.text, controller: dateController,
                     ),
                   ),
                 ),
                 SizedBox(height: 20),
-                AddContainer(text: 'Doctor`s Name(optional)', texts: 'name'),
+                AddContainer(text: 'Doctor`s Name(optional)', texts: 'name', controller: drNameController,),
               ],
             ),
             Column(
               children: [
                 CommonButton(
                   text: 'Save Report',
-                  onTap: () {},
+                  onTap: () {
+                    Navigator.pushReplacementNamed(context, AppRoute.viewReport);
+                  },
                   textColor: AppColors.white,
                   bgColor: AppColors.icon1,
                 ),

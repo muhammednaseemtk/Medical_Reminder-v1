@@ -4,7 +4,13 @@ import 'package:medical_reminder/core/theme/app_colors.dart';
 class AddContainer extends StatelessWidget {
   final String text;
   final String texts;
-  const AddContainer({super.key, required this.text, required this.texts});
+  final TextEditingController controller;
+  const AddContainer({
+    super.key,
+    required this.text,
+    required this.texts,
+    required this.controller,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -13,17 +19,16 @@ class AddContainer extends StatelessWidget {
       children: [
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 10),
-          child: Text(text,style: TextStyle(fontWeight: FontWeight.w500),),
+          child: Text(text, style: TextStyle(fontWeight: FontWeight.w500)),
         ),
-        SizedBox(height: 5,),
-        TextField(cursorColor: AppColors.txtColor,
-          decoration: 
-          InputDecoration(
+        SizedBox(height: 5),
+        TextField(
+          controller: controller,
+          cursorColor: AppColors.txtColor,
+          decoration: InputDecoration(
             hintText: texts,
             hintStyle: TextStyle(color: AppColors.txtColor),
-            border: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(18)
-            ),
+            border: OutlineInputBorder(borderRadius: BorderRadius.circular(18)),
             focusedBorder: OutlineInputBorder(
               borderSide: BorderSide(color: AppColors.txtColor),
               borderRadius: BorderRadius.circular(18),

@@ -14,6 +14,9 @@ class AddingMedicine extends StatefulWidget {
 }
 
 class _AddingMedicineState extends State<AddingMedicine> {
+  TextEditingController nameController =TextEditingController();
+  TextEditingController dosageController =TextEditingController();
+
   DateTime? startDate;
   DateTime? endDate;
 
@@ -122,9 +125,9 @@ class _AddingMedicineState extends State<AddingMedicine> {
                 ],
               ),
               SizedBox(height: 25),
-              AddContainer(text: 'Medicine Name', texts: 'Enter medicine name'),
+              AddContainer(text: 'Medicine Name', texts: 'Enter medicine name', controller: nameController,),
               SizedBox(height: 15),
-              AddContainer(text: 'Dosage', texts: 'Enter the dosage'),
+              AddContainer(text: 'Dosage', texts: 'Enter the dosage', controller: dosageController,),
               SizedBox(height: 15),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
