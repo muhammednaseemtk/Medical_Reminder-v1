@@ -18,7 +18,7 @@ class ReportDate extends StatelessWidget {
         children: [
           Text(
             "Select Date",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.textColor1),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.icon1),
           ),
           SizedBox(height: 10),
           Theme(
@@ -26,8 +26,7 @@ class ReportDate extends StatelessWidget {
               colorScheme: ColorScheme.light(
                 primary: AppColors.icon1,
                 onPrimary: AppColors.white,
-                onSurface: AppColors.txtColor,
-                
+                onSurface: AppColors.txtColor
               )
             ),
             child: Expanded(

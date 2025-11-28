@@ -5,11 +5,13 @@ class AddContainer extends StatelessWidget {
   final String text;
   final String texts;
   final TextEditingController controller;
+  final FormFieldValidator<String>? validator;
   const AddContainer({
     super.key,
     required this.text,
     required this.texts,
     required this.controller,
+    required this.validator
   });
 
   @override
@@ -22,7 +24,8 @@ class AddContainer extends StatelessWidget {
           child: Text(text, style: TextStyle(fontWeight: FontWeight.w500)),
         ),
         SizedBox(height: 5),
-        TextField(
+        TextFormField(
+          validator: validator,
           controller: controller,
           cursorColor: AppColors.txtColor,
           decoration: InputDecoration(

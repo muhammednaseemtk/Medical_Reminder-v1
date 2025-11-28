@@ -7,6 +7,7 @@ import 'package:medical_reminder/presentation/adding%20appointment/view/adding_a
 import 'package:medical_reminder/presentation/adding%20bmi/view/adding_bmi.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/view/adding_medicine.dart';
+import 'package:medical_reminder/presentation/adding%20view%20report/model/report_model.dart';
 import 'package:medical_reminder/presentation/adding%20view%20report/view/adding_view_report.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 import 'package:medical_reminder/presentation/check%20bmi/view/check_bmi.dart';
@@ -26,8 +27,10 @@ void main() async {
 
   Hive.registerAdapter(UserModelAdapter());
   Hive.registerAdapter(MedicineModelAdapter());
+  Hive.registerAdapter(ReportModelAdapter());
   await Hive.openBox<UserModel>('users');
   await Hive.openBox<MedicineModel> ('medicines');
+  await Hive.openBox<ReportModel>('reports');
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {

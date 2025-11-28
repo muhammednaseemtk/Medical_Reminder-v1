@@ -15,6 +15,7 @@ class LoginScreen extends StatefulWidget {
   @override
   State<LoginScreen> createState() => _LoginScreenState();
 }
+
 class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
@@ -103,16 +104,19 @@ class _LoginScreenState extends State<LoginScreen> {
                             final password = _passwordController.text.trim();
                             final user = await userFunc.getUser(email);
                             bool sucess = userFunc.loginUser(email, password);
-                            if(sucess){
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Login Sucess')));
+                            if (sucess) {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Login Sucess')),
+                              );
                               Navigator.pushReplacementNamed(
-                              context,
-                              AppRoute.mainPage,
-                            );
-                            }else{
-                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Invalid Credantional')));
+                                context,
+                                AppRoute.mainPage,
+                              );
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Invalid Credantional')),
+                              );
                             }
-                            
                           }
                         },
                         textColor: AppColors.white,

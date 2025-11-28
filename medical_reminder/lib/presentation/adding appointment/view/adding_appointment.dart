@@ -11,7 +11,7 @@ class AddingAppointment extends StatefulWidget {
 }
 
 class _AddingAppointmentState extends State<AddingAppointment> {
-  TextEditingController titleController = TextEditingController();
+ final TextEditingController titleController = TextEditingController();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -31,7 +31,7 @@ class _AddingAppointmentState extends State<AddingAppointment> {
           children: [
             AddContainer(
               text: 'Appointment Title',
-              texts: 'e.g., Chemotherapy Session', controller: titleController,
+              texts: 'e.g., Chemotherapy Session', controller: titleController, validator: (String? value) {  },
             ),
             SizedBox(height: 15),
             Row(
