@@ -20,7 +20,7 @@ class AddContainer extends StatelessWidget {
           decoration: 
           InputDecoration(
             hintText: texts,
-            hintStyle: TextStyle(color: AppColors.lightShade),
+            hintStyle: TextStyle(color: AppColors.txtColor),
             border: OutlineInputBorder(
               borderRadius: BorderRadius.circular(18)
             ),

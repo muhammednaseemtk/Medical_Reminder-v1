@@ -155,7 +155,8 @@ class _AddingMedicineState extends State<AddingMedicine> {
                 onTimeChanged: (list) {
                   selectedTimes = list;
                 },
-              ),SizedBox(height: 5,),
+              ),SizedBox(height: 70,),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 38),
                 child: CommonButton(text: 'Save Medicine', onTap: (){}, textColor: AppColors.white, bgColor: AppColors.icon1),
