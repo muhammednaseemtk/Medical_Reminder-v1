@@ -5,6 +5,7 @@ class AppRoute {
   static const String home = '/home';
   static const String viewReport = '/viewReport';
   static const String addingViewReport = '/addingViewReport';
+  static const String editViewReport = '/editViewReport';
   static const String addAppointment = '/addAppointment';
   static const String addingAppointment = '/addingAppointment';
   static const String manageMedicine = '/manageMedicine';
