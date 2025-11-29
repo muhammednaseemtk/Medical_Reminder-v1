@@ -16,7 +16,7 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         foregroundColor: AppColors.white,
-        backgroundColor: AppColors.icon1,
+        backgroundColor: AppColors.icon,
         title: Text('Check BMI',style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
       ),
@@ -28,7 +28,7 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
         child: FloatingActionButton(onPressed: (){
           Navigator.pushNamed(context, AppRoute.addingBmi);
         },
-        backgroundColor: AppColors.icon1,
+        backgroundColor: AppColors.icon,
         child: Icon(Icons.add,color: AppColors.white,),
         ),
       ),

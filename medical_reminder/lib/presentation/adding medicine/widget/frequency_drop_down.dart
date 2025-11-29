@@ -96,7 +96,7 @@ class _FrequencyDropDownState extends State<FrequencyDropDown> {
                           times[index]?.format(context) ?? "Time ${index + 1}",
                           style: TextStyle(fontSize: 14),
                         ),
-                        Icon(Icons.access_time, size: 18),
+                        Icon(Icons.access_time, size: 18,color: AppColors.icon,),
                       ],
                     ),
                   ),

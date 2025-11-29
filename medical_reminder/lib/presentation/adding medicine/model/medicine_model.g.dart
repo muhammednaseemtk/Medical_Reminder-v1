@@ -19,7 +19,7 @@ class MedicineModelAdapter extends TypeAdapter<MedicineModel> {
     return MedicineModel(
       name: fields[0] as String,
       dosage: fields[1] as String,
-      type: (fields[2] as List).cast<String>(),
+      type: fields[2] as String,
       startDate: fields[3] as String,
       endDate: fields[4] as String,
       times: (fields[5] as List).cast<String>(),

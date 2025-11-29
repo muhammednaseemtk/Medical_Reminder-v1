@@ -18,7 +18,7 @@ class _AddingAppointmentState extends State<AddingAppointment> {
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         foregroundColor: AppColors.white,
-        backgroundColor: AppColors.icon1,
+        backgroundColor: AppColors.icon,
         title: Text(
           'Add Appointment',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -31,7 +31,7 @@ class _AddingAppointmentState extends State<AddingAppointment> {
           children: [
             AddContainer(
               text: 'Appointment Title',
-              texts: 'e.g., Chemotherapy Session', controller: titleController, validator: (String? value) {  },
+              texts: 'e.g., Chemotherapy Session', controller: titleController, validator: (value) {  },
             ),
             SizedBox(height: 15),
             Row(

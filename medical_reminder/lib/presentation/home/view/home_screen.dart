@@ -45,14 +45,14 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   MenuCard(
-                    image: 'asset/image/viewreport.jpeg',
+                    image: 'asset/image/viewreport.jpg',
                     text: 'View Report',
                     onTap: () {
                       Navigator.pushNamed(context, AppRoute.viewReport);
                     },
                   ),
                   MenuCard(
-                    image: 'asset/image/managemedicine.jpeg',
+                    image: 'asset/image/managemedicine.jpg',
                     text: 'Manage Medicine',
                     onTap: () {
                       Navigator.pushNamed(context, AppRoute.manageMedicine);
@@ -67,7 +67,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceAround,
                 children: [
                   MenuCard(
-                    image: 'asset/image/addappoinment.jpeg',
+                    image: 'asset/image/addappointment.jpg',
                     text: 'Add Appointment',
                     onTap: () {
                       Navigator.pushNamed(context, AppRoute.addAppointment);

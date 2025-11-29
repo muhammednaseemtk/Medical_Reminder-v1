@@ -15,7 +15,7 @@ class _AddingBmiState extends State<AddingBmi> {
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         foregroundColor: AppColors.white,
-        backgroundColor: AppColors.icon1,
+        backgroundColor: AppColors.icon,
         title: Text('Add BMI',style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
       ),

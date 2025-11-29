@@ -52,7 +52,7 @@ class _EditViewReportState extends State<EditViewReport> {
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         foregroundColor: AppColors.white,
-        backgroundColor: AppColors.icon1,
+        backgroundColor: AppColors.icon,
         title:  Text(
           'Edit Report',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -143,7 +143,7 @@ class _EditViewReportState extends State<EditViewReport> {
                       }
                     },
                     textColor: AppColors.white,
-                    bgColor: AppColors.icon1,
+                    bgColor: AppColors.icon,
                   ),
                    SizedBox(height: 20),
                 ],

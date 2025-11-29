@@ -40,7 +40,7 @@ class _AddingViewReportState extends State<AddingViewReport> {
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         foregroundColor: AppColors.white,
-        backgroundColor: AppColors.icon1,
+        backgroundColor: AppColors.icon,
         title: Text(
           'Add Report',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -124,16 +124,15 @@ class _AddingViewReportState extends State<AddingViewReport> {
                         );
                         await addReport(report);
                         Navigator.pop(context);
-                      } else {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("Please fill all fields correctly"),
+                            content: Text("Add report"),
                           ),
                         );
-                      }
+                      } 
                     },
                     textColor: AppColors.white,
-                    bgColor: AppColors.icon1,
+                    bgColor: AppColors.icon,
                   ),
                   SizedBox(height: 20),
                 ],

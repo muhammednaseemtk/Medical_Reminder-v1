@@ -11,7 +11,7 @@ class MedicineModel {
   String dosage;
 
   @HiveField(2)
-  List<String> type;
+  String type;
 
   @HiveField(3)
   String startDate;

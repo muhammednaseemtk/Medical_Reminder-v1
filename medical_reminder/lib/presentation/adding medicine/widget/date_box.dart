@@ -16,36 +16,46 @@ class DateBox extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 11),
-            child: Text(label, style: TextStyle(fontWeight: FontWeight.w500)),
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          child: Text(
+            label,
+            style: TextStyle(
+              fontWeight: FontWeight.w500,
+              color: AppColors.txtColor,
+            ),
           ),
-          SizedBox(height: 6),
+        ),
+        SizedBox(height: 6),
 
-          Container(
+        GestureDetector(
+          onTap: onTap,
+          child: Container(
             width: 175,
-            padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+            padding: EdgeInsets.symmetric(horizontal: 14, vertical: 14),
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(15),
               border: Border.all(color: AppColors.lightShade),
             ),
-
             child: Row(
               children: [
-                Icon(EneftyIcons.calendar_outline, color: AppColors.icon1),
-                SizedBox(width: 8),
-
-                Text(value, style: TextStyle(fontSize: 15)),
+                Icon(EneftyIcons.calendar_outline, color: AppColors.icon),
+                SizedBox(width: 10),
+                Expanded(
+                  child: Text(
+                    value,
+                    style: TextStyle(fontSize: 16, color: AppColors.txtColor),
+                    overflow: TextOverflow.ellipsis,
+                  ),
+                ),
               ],
             ),
           ),
-        ],
-      ),
+        ),
+      ],
     );
   }
 }

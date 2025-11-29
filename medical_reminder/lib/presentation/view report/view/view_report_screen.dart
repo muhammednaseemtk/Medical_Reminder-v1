@@ -23,7 +23,7 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         foregroundColor: AppColors.white,
-        backgroundColor: AppColors.icon1,
+        backgroundColor: AppColors.icon,
         title: const Text(
           'View Report',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -39,7 +39,7 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('asset/image/report.jpeg', width: 280),
+                  Image.asset('asset/image/report.jpg', width: 280),
                   const Text('No Medical Report Found!'),
                   Text(
                     'Please add your first report to get started.',
@@ -66,7 +66,7 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       IconButton(
-                        icon: Icon(Icons.edit, color: AppColors.icon1),
+                        icon: Icon(Icons.edit, color: AppColors.icon),
                         onPressed: () {
                           Navigator.pushNamed(
                             context,
@@ -80,7 +80,7 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
                       ),
 
                       IconButton(
-                        icon: Icon(Icons.delete, color: AppColors.icon1),
+                        icon: Icon(Icons.delete, color: AppColors.icon),
                         onPressed: () => deleteReport(index),
                       ),
                     ],
@@ -98,7 +98,7 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
           onPressed: () {
             Navigator.pushNamed(context, AppRoute.addingViewReport);
           },
-          backgroundColor: AppColors.icon1,
+          backgroundColor: AppColors.icon,
           child: Icon(Icons.add, color: AppColors.white),
         ),
       ),

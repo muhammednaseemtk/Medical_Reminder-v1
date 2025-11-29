@@ -16,7 +16,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         foregroundColor: AppColors.white,
-        backgroundColor: AppColors.icon1,
+        backgroundColor: AppColors.icon,
         title: Text(
           'Appointment',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -27,7 +27,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image.asset('asset/image/appointment.jpeg',width: 250,height: 260,),
+            Image.asset('asset/image/appointment.jpg',width: 250,height: 260,),
             Text('No Appointments Yet!', style: TextStyle(fontSize: 15)),
             Text('Add your first appointment to get started',style: TextStyle(color: AppColors.lightShade),)
           ],
@@ -39,7 +39,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
           onPressed: () {
             Navigator.pushNamed(context, AppRoute.addingAppointment);
           },
-          backgroundColor: AppColors.icon1,
+          backgroundColor: AppColors.icon,
           child: Icon(Icons.add, color: AppColors.white),
         ),
       ),

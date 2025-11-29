@@ -19,7 +19,7 @@ class _ManageMedicineScreenState extends State<ManageMedicineScreen> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         foregroundColor: AppColors.white,
-        backgroundColor: AppColors.icon1,
+        backgroundColor: AppColors.icon,
         title: Text(
           'Manage Medicine',
           style: TextStyle(fontWeight: FontWeight.bold),
@@ -40,7 +40,7 @@ class _ManageMedicineScreenState extends State<ManageMedicineScreen> {
                   selectedDate = date;
                 });
               },
-              activeBackgroundColor: AppColors.icon1,
+              activeBackgroundColor: AppColors.icon,
               activeTextColor: AppColors.white,
               inactiveBackgroundColor: AppColors.white,
               inactiveTextColor: AppColors.txtColor,
@@ -56,7 +56,7 @@ class _ManageMedicineScreenState extends State<ManageMedicineScreen> {
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
-                  Image.asset('asset/image/medicine.jpeg', width: 240),
+                  Image.asset('asset/image/medicine.jpg', width: 240),
                   Text(
                     'Add Medicine Reminder',
                     style: TextStyle(fontSize: 15),
@@ -74,7 +74,7 @@ class _ManageMedicineScreenState extends State<ManageMedicineScreen> {
           onPressed: () {
             Navigator.pushNamed(context, AppRoute.addingMedicine);
           },
-          backgroundColor: AppColors.icon1,
+          backgroundColor: AppColors.icon,
           child: Icon(Icons.add, color: AppColors.white),
         ),
       ),
