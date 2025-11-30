@@ -17,6 +17,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _emailController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
+  final TextEditingController _phoneNumberController = TextEditingController();
   final signUpText = TextConstant.signUp;
   final formKey = GlobalKey<FormState>();
   @override
@@ -56,6 +57,20 @@ class _SignUpScreenState extends State<SignUpScreen> {
                         },
                       ),
                       CustomTextField(
+                        text: 'Phone Number',
+                        text1: 'Phone Number',
+                        controller: _phoneNumberController,
+                        validator: (value) {
+                          if(value == null || value.isEmpty) {
+                            return 'Phone number cannot be empty';
+                          }else if(value.length < 10) {
+                            return 'this not 10 numbers';
+                          }else {
+                            return null;
+                          }
+                        },
+                      ),
+                      CustomTextField(
                         text: 'Email',
                         text1: 'Email',
                         controller: _emailController,
@@ -91,6 +106,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               username: _usernameController.text.trim(),
                               email: _emailController.text.trim(),
                               password: _passwordController.text.trim(),
+                              phoneNumber: _phoneNumberController.text.trim()
                             );
                             final check = await userFunc.addUser(newUser);
                             if (check) {
@@ -102,9 +118,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                 context,
                               ).showSnackBar(SnackBar(content: Text('Sucess')));
                             } else {
-                              ScaffoldMessenger.of(
-                                context,
-                              ).showSnackBar(SnackBar(content: Text('Something when wrong')));
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                SnackBar(content: Text('Something when wrong')),
+                              );
                             }
                           }
                         },

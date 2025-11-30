@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoute.splash,
+      initialRoute: AppRoute.signUp,
 
       routes: {
         AppRoute.splash: (context) => const SplashScreen(),

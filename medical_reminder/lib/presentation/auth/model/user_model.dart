@@ -13,9 +13,13 @@ class UserModel {
   @HiveField(2)
   String password;
 
+  @HiveField(3)
+  String phoneNumber;
+
   UserModel({
     required this.username,
     required this.email,
-    required this.password
+    required this.password,
+    required this.phoneNumber
   });
 }
