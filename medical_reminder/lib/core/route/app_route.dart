@@ -12,7 +12,6 @@ class AppRoute {
   static const String addingMedicine = '/addingMedicine';
   static const String checkBmi = '/checkBmi';
   static const String addingBmi = '/addingBmi';
-  static const String notification = '/notification';
   static const String statistics = '/statistics';
   static const String setting = '/setting';
   static const String mainPage = '/mainPage';

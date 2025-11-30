@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
-import 'package:medical_reminder/presentation/Notification/view/notification_screen.dart';
 import 'package:medical_reminder/presentation/add appointment/view/appointment_screen.dart';
 import 'package:medical_reminder/presentation/adding appointment/view/adding_appointment.dart';
 import 'package:medical_reminder/presentation/adding bmi/view/adding_bmi.dart';
@@ -44,7 +43,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoute.mainPage,
+      initialRoute: AppRoute.splash,
 
       routes: {
         AppRoute.splash: (context) => const SplashScreen(),
@@ -69,8 +68,7 @@ class MyApp extends StatelessWidget {
         AppRoute.addingMedicine: (context) => AddingMedicine(),
         AppRoute.checkBmi: (context) => CheckBmiScreen(),
         AppRoute.addingBmi: (context) => AddingBmi(),
-        AppRoute.notification: (context) => NotificationScreen(),
-        AppRoute.statistics: (context) => StatisticsScreen(),
+       AppRoute.statistics: (context) => StatisticsScreen(),
         AppRoute.setting: (context) => SettingScreen(),
         AppRoute.mainPage: (context) => MainPage(),
       },

@@ -93,9 +93,7 @@ class _AddingMedicineState extends State<AddingMedicine> {
               SizedBox(height: 10),
               MedicineTypeDropdown(
                 items: medicineTypes,
-                onChanged: (value) {
-                  selectedMedicineType = value;
-                },
+                onChanged: (value) {},
               ),
               SizedBox(height: 25),
               AddContainer(
@@ -147,11 +145,7 @@ class _AddingMedicineState extends State<AddingMedicine> {
                 padding: const EdgeInsets.symmetric(horizontal: 38),
                 child: CommonButton(
                   text: 'Save Medicine',
-                  onTap: () {
-                    print("TYPE: $selectedMedicineType");
-                    print("NAME: ${nameController.text}");
-                    print("DOSAGE: ${dosageController.text}");
-                  },
+                  onTap: () {},
                   textColor: AppColors.white,
                   bgColor: AppColors.icon,
                 ),

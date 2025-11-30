@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/presentation/auth/login/view/login_screen.dart';
+import 'package:medical_reminder/presentation/auth/sign_up/view/sign_up_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -11,7 +12,6 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    // TODO: implement initState
     super.initState();
     goLogin();
   }
@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
     await Future.delayed(Duration(seconds: 3));
     Navigator.pushReplacement(
       context,
-      MaterialPageRoute(builder: (context) => LoginScreen()),
+      MaterialPageRoute(builder: (context) => SignUpScreen()),
     );
   }
 

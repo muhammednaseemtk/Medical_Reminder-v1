@@ -22,10 +22,6 @@ class BottomNavBar extends StatelessWidget {
             label: 'Home',
           ),
           BottomNavigationBarItem(
-            icon: Icon(EneftyIcons.notification_outline),
-            label: 'Notification',
-          ),
-          BottomNavigationBarItem(
             icon: Icon(EneftyIcons.chart_4_outline),
             label: 'Statistics',
           ),

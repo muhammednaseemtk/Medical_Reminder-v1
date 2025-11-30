@@ -96,7 +96,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                             if (check) {
                               Navigator.pushReplacementNamed(
                                 context,
-                                AppRoute.login,
+                                AppRoute.mainPage,
                               );
                               ScaffoldMessenger.of(
                                 context,

@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:medical_reminder/core/theme/app_colors.dart';
 
 class MedicineTypeDropdown extends StatefulWidget {
-  final List<String> items;               
+  final List<String> items;                
   final Function(String) onChanged;       
   final String? initialValue;             
 
@@ -29,10 +30,17 @@ class _MedicineTypeDropdownState extends State<MedicineTypeDropdown> {
   Widget build(BuildContext context) {
     return DropdownButtonFormField<String>(
       decoration: InputDecoration(
-        labelText: "Select Medicine Type",
-        border: OutlineInputBorder(),
+        hintText: "Select Medicine Type",
         contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+        border: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+        ),
+        focusedBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(8),
+          borderSide: BorderSide(color: AppColors.lightShade), 
+        ),
       ),
+      dropdownColor: AppColors.white,
       value: selectedValue,
       items: widget.items.map((value) {
         return DropdownMenuItem(
