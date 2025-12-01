@@ -11,6 +11,7 @@ import 'package:medical_reminder/presentation/adding view report/view/adding_vie
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 import 'package:medical_reminder/presentation/check bmi/view/check_bmi.dart';
 import 'package:medical_reminder/presentation/edit view report/view/edit_report.dart';
+import 'package:medical_reminder/presentation/edit%20appointment/view/edit_appointment.dart';
 import 'package:medical_reminder/presentation/home/view/home_screen.dart';
 import 'package:medical_reminder/presentation/auth/login/view/login_screen.dart';
 import 'package:medical_reminder/presentation/auth/sign_up/view/sign_up_screen.dart';
@@ -43,7 +44,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoute.signUp,
+      initialRoute: AppRoute.mainPage,
 
       routes: {
         AppRoute.splash: (context) => const SplashScreen(),
@@ -64,6 +65,7 @@ class MyApp extends StatelessWidget {
 
         AppRoute.addAppointment: (context) => AppointmentScreen(),
         AppRoute.addingAppointment: (context) => AddingAppointment(),
+        AppRoute.editAppointment: (context) => EditAppointment(),
         AppRoute.manageMedicine: (context) => ManageMedicineScreen(),
         AppRoute.addingMedicine: (context) => AddingMedicine(),
         AppRoute.checkBmi: (context) => CheckBmiScreen(),

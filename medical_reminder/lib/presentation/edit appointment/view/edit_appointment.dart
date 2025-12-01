@@ -5,14 +5,14 @@ import 'package:medical_reminder/presentation/adding appointment/widget/appointm
 import 'package:medical_reminder/presentation/adding view report/widget/add_report.dart';
 import 'package:medical_reminder/presentation/adding view report/widget/report_date.dart';
 
-class AddingAppointment extends StatefulWidget {
-  const AddingAppointment({super.key});
+class EditAppointment extends StatefulWidget {
+  const EditAppointment({super.key});
 
   @override
-  State<AddingAppointment> createState() => _AddingAppointmentState();
+  State<EditAppointment> createState() => _EditAppointmentState();
 }
 
-class _AddingAppointmentState extends State<AddingAppointment> {
+class _EditAppointmentState extends State<EditAppointment> {
   final TextEditingController appointmentController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController dateController = TextEditingController();

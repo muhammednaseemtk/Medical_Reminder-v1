@@ -1,12 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/common/widget/common_button.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/adding medicine/widget/adding_container.dart';
-import 'package:medical_reminder/presentation/adding medicine/widget/date_box.dart';
 import 'package:medical_reminder/presentation/adding medicine/widget/frequency_drop_down.dart';
 import 'package:medical_reminder/presentation/adding view report/widget/report_date.dart';
+import 'package:medical_reminder/presentation/adding%20medicine/function/medicone_add.dart';
+import 'package:medical_reminder/presentation/adding%20medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/widget/type_drop_down.dart';
 import 'package:medical_reminder/presentation/adding%20view%20report/widget/add_report.dart';
+import 'package:medical_reminder/presentation/adding medicine/widget/date_box.dart';
 
 class AddingMedicine extends StatefulWidget {
   const AddingMedicine({super.key});
@@ -24,34 +25,27 @@ class _AddingMedicineState extends State<AddingMedicine> {
   DateTime? endDate;
 
   List<String> selectedTimes = [];
-
   String? selectedMedicineType;
-
-  final List<String> medicineTypes = [
-    'Pills',
-    'Drops',
-    'Syrup',
-    'Injection',
-  ];
+  final List<String> medicineTypes = ['Pills', 'Drops', 'Syrup', 'Injection'];
 
   String format(DateTime? date) {
-    if (date == null) return "Select";
+    if (date == null) return "mm/dd/yyyy";
     return "${date.day}/${date.month}/${date.year}";
   }
-
-  Future<void> pickDate({required bool isStart}) async {
-    final DateTime? picked = await showModalBottomSheet<DateTime>(
+  Future<DateTime?> pickReportDate(DateTime initialDate) {
+    return showModalBottomSheet<DateTime>(
       context: context,
       backgroundColor: Colors.white,
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
-      builder: (context) => ReportDate(
-        initialDate: isStart
-            ? startDate ?? DateTime.now()
-            : endDate ?? DateTime.now(),
-      ),
+      builder: (context) => ReportDate(initialDate: initialDate),
     );
+  }
+
+  Future<void> pickDate({required bool isStart}) async {
+    final DateTime initial = isStart ? (startDate ?? DateTime.now()) : (endDate ?? DateTime.now());
+    DateTime? picked = await pickReportDate(initial);
 
     if (picked != null) {
       setState(() {
@@ -67,88 +61,140 @@ class _AddingMedicineState extends State<AddingMedicine> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: AppColors.white,
+      backgroundColor: AppColors.bgColor,
       appBar: AppBar(
-        foregroundColor: AppColors.white,
         backgroundColor: AppColors.icon,
+        foregroundColor: AppColors.white,
         title: Text(
-          'Add Medicine',
+          "Add Medicine",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
       body: Padding(
-        padding: const EdgeInsets.all(12.0),
-        child: SingleChildScrollView(
+        padding: const EdgeInsets.all(10.0),
+        child: Form(
+          key: formKey,
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              Padding(
-                padding: EdgeInsets.symmetric(horizontal: 11),
-                child: Text(
-                  "Medicine Type",
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              SizedBox(height: 10),
-              MedicineTypeDropdown(
-                items: medicineTypes,
-                onChanged: (value) {},
-              ),
-              SizedBox(height: 25),
-              AddContainer(
-                text: 'Medicine Name',
-                texts: 'Enter medicine name',
-                controller: nameController,
-                validator: (value) {},
-              ),
-              SizedBox(height: 15),
-              AddContainer(
-                text: 'Dosage',
-                texts: 'Enter the dosage',
-                controller: dosageController,
-                validator: (value) {},
-              ),
-              SizedBox(height: 15),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              Column(
                 children: [
-                  DateBox(
-                    label: "Start Date",
-                    value: format(startDate),
-                    onTap: () => pickDate(isStart: true),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Medicine Type",
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                    ),
                   ),
-                  SizedBox(width: 12),
-                  DateBox(
-                    label: "End Date",
-                    value: format(endDate),
-                    onTap: () => pickDate(isStart: false),
+                  SizedBox(height: 10),
+                  MedicineTypeDropdown(
+                    items: medicineTypes,
+                    onChanged: (value) {
+                      setState(() {
+                        selectedMedicineType = value;
+                      });
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  AddContainer(
+                    text: "Medicine Name",
+                    texts: "Enter medicine name",
+                    controller: nameController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) return "name required";
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  AddContainer(
+                    text: "Dosage",
+                    texts: "Enter dosage",
+                    controller: dosageController,
+                    validator: (value) {
+                      if (value == null || value.isEmpty) return "dosage required";
+                      return null;
+                    },
+                  ),
+                  SizedBox(height: 20),
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                    children: [
+                      GestureDetector(
+                        onTap: () => pickDate(isStart: true),
+                        child: AbsorbPointer(
+                          child: DateBox(
+                            label: "Start Date",
+                            value: format(startDate),
+                            onTap: () {},
+                          ),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      GestureDetector(
+                        onTap: () => pickDate(isStart: false),
+                        child: AbsorbPointer(
+                          child: DateBox(
+                            label: "End Date",
+                            value: format(endDate),
+                            onTap: () {},
+                          ),
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(height: 20),
+                  Padding(
+                    padding: const EdgeInsets.only(left: 5),
+                    child: Align(
+                      alignment: Alignment.centerLeft,
+                      child: Text(
+                        "Select Frequency",
+                        style: TextStyle(fontWeight: FontWeight.w500),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 10),
+                  FrequencyDropDown(
+                    onTimeChanged: (list) => selectedTimes = list,
                   ),
                 ],
               ),
-              SizedBox(height: 15),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 11),
-                child: Text(
-                  'Select Frequency',
-                  style: TextStyle(fontWeight: FontWeight.w500),
-                ),
-              ),
-              SizedBox(height: 5),
-              FrequencyDropDown(
-                onTimeChanged: (list) {
-                  selectedTimes = list;
-                },
-              ),
-              SizedBox(height: 60),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 38),
-                child: CommonButton(
-                  text: 'Save Medicine',
-                  onTap: () {},
-                  textColor: AppColors.white,
-                  bgColor: AppColors.icon,
-                ),
+              Column(
+                children: [
+                  CommonButton(
+                    text: "Save Medicine",
+                    onTap: () async {
+                      if (formKey.currentState!.validate() &&
+                          selectedMedicineType != null &&
+                          startDate != null &&
+                          endDate != null &&
+                          selectedTimes.isNotEmpty) {
+                        final medicine = MedicineModel(
+                          name: nameController.text,
+                          dosage: dosageController.text,
+                          type: selectedMedicineType!,
+                          startDate: startDate.toString(),
+                          endDate: endDate.toString(),
+                          times: selectedTimes,
+                        );
+
+                        await addMedicine(medicine);
+                        Navigator.pop(context);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Medicine Added")),
+                        );
+                      }
+                    },
+                    bgColor: AppColors.icon,
+                    textColor: AppColors.white,
+                  ),
+                  SizedBox(height: 20),
+                ],
               ),
             ],
           ),

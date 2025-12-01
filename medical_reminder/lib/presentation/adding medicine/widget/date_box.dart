@@ -48,7 +48,6 @@ class DateBox extends StatelessWidget {
                   child: Text(
                     value,
                     style: TextStyle(fontSize: 16, color: AppColors.txtColor),
-                    overflow: TextOverflow.ellipsis,
                   ),
                 ),
               ],

@@ -8,11 +8,12 @@ class UserFunctions {
     return true;
   }
 
-  bool loginUser(String email, String password) {
+  Future<bool> loginUser(String email, String password)async{
     if (!userBox.containsKey(email)) {
       return false;
     }
     final user = userBox.get(email);
+     await Hive.openBox(email);
     return user!.password == password;
   }
   UserModel? getUser(String email){

@@ -33,10 +33,10 @@ class _MedicineTypeDropdownState extends State<MedicineTypeDropdown> {
         hintText: "Select Medicine Type",
         contentPadding: EdgeInsets.symmetric(horizontal: 12, vertical: 10),
         border: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(15),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.circular(8),
+          borderRadius: BorderRadius.circular(15),
           borderSide: BorderSide(color: AppColors.lightShade), 
         ),
       ),

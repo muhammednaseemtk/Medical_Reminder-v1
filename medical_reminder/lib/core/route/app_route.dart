@@ -8,6 +8,7 @@ class AppRoute {
   static const String editViewReport = '/editViewReport';
   static const String addAppointment = '/addAppointment';
   static const String addingAppointment = '/addingAppointment';
+  static const String editAppointment = '/editAppointment';
   static const String manageMedicine = '/manageMedicine';
   static const String addingMedicine = '/addingMedicine';
   static const String checkBmi = '/checkBmi';

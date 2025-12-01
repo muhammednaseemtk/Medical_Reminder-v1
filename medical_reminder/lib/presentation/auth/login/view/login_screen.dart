@@ -103,7 +103,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             final email = _emailController.text.trim();
                             final password = _passwordController.text.trim();
                             final user = await userFunc.getUser(email);
-                            bool sucess = userFunc.loginUser(email, password);
+                            bool sucess = await userFunc.loginUser(email, password);
                             if (sucess) {
                               ScaffoldMessenger.of(context).showSnackBar(
                                 SnackBar(content: Text('Login Sucess')),

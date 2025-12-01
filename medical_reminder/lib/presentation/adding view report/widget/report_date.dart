@@ -18,13 +18,13 @@ class ReportDate extends StatelessWidget {
         children: [
           Text(
             "Select Date",
-            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.icon1),
+            style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold,color: AppColors.icon),
           ),
           SizedBox(height: 10),
           Theme(
             data: Theme.of(context).copyWith(
               colorScheme: ColorScheme.light(
-                primary: AppColors.icon1,
+                primary: AppColors.icon,
                 onPrimary: AppColors.white,
                 onSurface: AppColors.txtColor
               )
@@ -44,7 +44,7 @@ class ReportDate extends StatelessWidget {
 
           ElevatedButton(
             style: ElevatedButton.styleFrom(
-              backgroundColor: AppColors.icon1,
+              backgroundColor: AppColors.icon,
               shape: RoundedRectangleBorder(
                 borderRadius: BorderRadius.circular(12),
               ),
