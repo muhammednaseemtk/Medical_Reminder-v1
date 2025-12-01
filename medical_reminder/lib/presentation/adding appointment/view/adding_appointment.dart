@@ -4,6 +4,8 @@ import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/adding appointment/widget/appointment_textfield.dart';
 import 'package:medical_reminder/presentation/adding view report/widget/add_report.dart';
 import 'package:medical_reminder/presentation/adding view report/widget/report_date.dart';
+import 'package:medical_reminder/presentation/adding appointment/model/appointment_model.dart';
+import 'package:medical_reminder/presentation/adding%20appointment/function/appointment_add.dart';
 
 class AddingAppointment extends StatefulWidget {
   const AddingAppointment({super.key});
@@ -94,7 +96,9 @@ class _AddingAppointmentState extends State<AddingAppointment> {
                       ),
                     ),
                   ),
+
                   SizedBox(height: 15),
+
                   AddContainer(
                     text: 'Doctor name',
                     texts: 'name',
@@ -102,22 +106,41 @@ class _AddingAppointmentState extends State<AddingAppointment> {
                     validator: (value) {
                       if (value == null || value.isEmpty) {
                         return 'name is required';
-                      } else {
-                        return null;
                       }
+                      return null;
                     },
                   ),
                 ],
               ),
+
               Column(
                 children: [
                   CommonButton(
-                    text: 'Save appointment',
-                    onTap: () {},
+                    text: 'Save Appointment',
+                    onTap: () async {
+                      if (formKey.currentState!.validate()) {
+                        final appointment = AppointmentModel(
+                          title: appointmentController.text.trim(),
+                          name: nameController.text.trim(),
+                          date: dateController.text.trim(),
+                        );
+
+                        await addAppointment(appointment);
+
+                        Navigator.pop(context);
+
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(
+                            content: Text("Appointment Added Successfully"),
+                          ),
+                        );
+                      }
+                    },
                     textColor: AppColors.white,
                     bgColor: AppColors.icon,
                   ),
-                  SizedBox(height: 20,)
+
+                  SizedBox(height: 20),
                 ],
               ),
             ],

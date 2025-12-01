@@ -1,12 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/common/widget/common_button.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/adding appointment/widget/appointment_textfield.dart';
+import 'package:medical_reminder/presentation/adding appointment/function/appointment_add.dart';
+import 'package:medical_reminder/presentation/adding appointment/model/appointment_model.dart';
 import 'package:medical_reminder/presentation/adding view report/widget/add_report.dart';
 import 'package:medical_reminder/presentation/adding view report/widget/report_date.dart';
 
 class EditAppointment extends StatefulWidget {
-  const EditAppointment({super.key});
+  final AppointmentModel appointment;
+  final int index;
+
+  const EditAppointment({
+    super.key,
+    required this.appointment,
+    required this.index,
+  });
 
   @override
   State<EditAppointment> createState() => _EditAppointmentState();
@@ -16,6 +24,7 @@ class _EditAppointmentState extends State<EditAppointment> {
   final TextEditingController appointmentController = TextEditingController();
   final TextEditingController nameController = TextEditingController();
   final TextEditingController dateController = TextEditingController();
+
   final formKey = GlobalKey<FormState>();
 
   Future<DateTime?> AppointmentDatePicker(BuildContext context) {
@@ -32,6 +41,16 @@ class _EditAppointmentState extends State<EditAppointment> {
   }
 
   @override
+  void initState() {
+    super.initState();
+
+    /// PREFILL VALUES
+    appointmentController.text = widget.appointment.title;
+    nameController.text = widget.appointment.name;
+    dateController.text = widget.appointment.date;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
@@ -39,11 +58,12 @@ class _EditAppointmentState extends State<EditAppointment> {
         foregroundColor: AppColors.white,
         backgroundColor: AppColors.icon,
         title: Text(
-          'Add Appointment',
+          'Edit Appointment',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Form(
@@ -55,11 +75,11 @@ class _EditAppointmentState extends State<EditAppointment> {
                 children: [
                   AddContainer(
                     text: 'Appointment Title',
-                    texts: 'title',
+                    texts: 'Enter title',
                     controller: appointmentController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'appointment title required';
+                        return 'Appointment title required';
                       }
                       return null;
                     },
@@ -82,42 +102,57 @@ class _EditAppointmentState extends State<EditAppointment> {
                       child: AddContainer(
                         text: 'Appointment Date',
                         texts: dateController.text.isEmpty
-                            ? 'mm/dd/yyyy'
+                            ? 'dd/mm/yyyy'
                             : dateController.text,
                         controller: dateController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'date is required';
+                            return 'Date is required';
                           }
                           return null;
                         },
                       ),
                     ),
                   ),
-                  SizedBox(height: 15),
+
+                  SizedBox(height: 20),
+
                   AddContainer(
-                    text: 'Doctor name',
-                    texts: 'name',
+                    text: 'Doctor Name',
+                    texts: 'Enter name',
                     controller: nameController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'name is required';
-                      } else {
-                        return null;
+                        return 'Doctor name required';
                       }
+                      return null;
                     },
                   ),
                 ],
               ),
+
               Column(
                 children: [
                   CommonButton(
-                    text: 'Save appointment',
-                    onTap: () {},
+                    text: 'Save Appointment',
+                    onTap: () async {
+                      if (formKey.currentState!.validate()) {
+                        final updatedAppointment = AppointmentModel(
+                          title: appointmentController.text,
+                          name: nameController.text,
+                          date: dateController.text,
+                        );
+
+                        await editAppointment(widget.index, updatedAppointment);
+
+                        Navigator.pop(context);
+                      }
+                    },
                     textColor: AppColors.white,
                     bgColor: AppColors.icon,
                   ),
-                  SizedBox(height: 20,)
+
+                  SizedBox(height: 20),
                 ],
               ),
             ],

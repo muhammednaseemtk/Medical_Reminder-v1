@@ -6,8 +6,8 @@ import 'package:medical_reminder/presentation/adding view report/widget/report_d
 import 'package:medical_reminder/presentation/adding%20medicine/function/medicone_add.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/widget/type_drop_down.dart';
-import 'package:medical_reminder/presentation/adding%20view%20report/widget/add_report.dart';
 import 'package:medical_reminder/presentation/adding medicine/widget/date_box.dart';
+import 'package:medical_reminder/presentation/adding%20view%20report/widget/add_report.dart';
 
 class AddingMedicine extends StatefulWidget {
   const AddingMedicine({super.key});
@@ -32,6 +32,7 @@ class _AddingMedicineState extends State<AddingMedicine> {
     if (date == null) return "mm/dd/yyyy";
     return "${date.day}/${date.month}/${date.year}";
   }
+
   Future<DateTime?> pickReportDate(DateTime initialDate) {
     return showModalBottomSheet<DateTime>(
       context: context,
@@ -44,7 +45,8 @@ class _AddingMedicineState extends State<AddingMedicine> {
   }
 
   Future<void> pickDate({required bool isStart}) async {
-    final DateTime initial = isStart ? (startDate ?? DateTime.now()) : (endDate ?? DateTime.now());
+    final DateTime initial =
+        isStart ? (startDate ?? DateTime.now()) : (endDate ?? DateTime.now());
     DateTime? picked = await pickReportDate(initial);
 
     if (picked != null) {
@@ -123,25 +125,77 @@ class _AddingMedicineState extends State<AddingMedicine> {
                   Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      GestureDetector(
-                        onTap: () => pickDate(isStart: true),
-                        child: AbsorbPointer(
-                          child: DateBox(
-                            label: "Start Date",
-                            value: format(startDate),
-                            onTap: () {},
-                          ),
+                      Expanded(
+                        child: FormField<DateTime>(
+                          validator: (value) {
+                            if (startDate == null) return 'Start date is required';
+                            return null;
+                          },
+                          builder: (field) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                GestureDetector(
+                                  onTap: () async {
+                                    await pickDate(isStart: true);
+                                    field.didChange(startDate);
+                                  },
+                                  child: AbsorbPointer(
+                                    child: DateBox(
+                                      label: "Start Date",
+                                      value: format(startDate),
+                                      onTap: () {},
+                                    ),
+                                  ),
+                                ),
+                                if (field.hasError)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5, left: 5),
+                                    child: Text(
+                                      field.errorText!,
+                                      style: TextStyle(color: Colors.red, fontSize: 12),
+                                    ),
+                                  ),
+                              ],
+                            );
+                          },
                         ),
                       ),
                       SizedBox(width: 10),
-                      GestureDetector(
-                        onTap: () => pickDate(isStart: false),
-                        child: AbsorbPointer(
-                          child: DateBox(
-                            label: "End Date",
-                            value: format(endDate),
-                            onTap: () {},
-                          ),
+                      Expanded(
+                        child: FormField<DateTime>(
+                          validator: (value) {
+                            if (endDate == null) return 'End date is required';
+                            return null;
+                          },
+                          builder: (field) {
+                            return Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                GestureDetector(
+                                  onTap: () async {
+                                    await pickDate(isStart: false);
+                                    field.didChange(endDate);
+                                  },
+                                  child: AbsorbPointer(
+                                    child: DateBox(
+                                      label: "End Date",
+                                      value: format(endDate),
+                                      onTap: () {},
+                                    ),
+                                  ),
+                                ),
+                                if (field.hasError)
+                                  Padding(
+                                    padding: const EdgeInsets.only(top: 5, left: 5),
+                                    child: Text(
+                                      field.errorText!,
+                                      style: TextStyle(color: Colors.red, fontSize: 12),
+                                    ),
+                                  ),
+                              ],
+                            );
+                          },
                         ),
                       ),
                     ],
@@ -168,11 +222,19 @@ class _AddingMedicineState extends State<AddingMedicine> {
                   CommonButton(
                     text: "Save Medicine",
                     onTap: () async {
-                      if (formKey.currentState!.validate() &&
-                          selectedMedicineType != null &&
-                          startDate != null &&
-                          endDate != null &&
-                          selectedTimes.isNotEmpty) {
+                      if (formKey.currentState!.validate()) {
+                        if (selectedMedicineType == null) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Medicine type is required")),
+                          );
+                          return;
+                        }
+                        if (selectedTimes.isEmpty) {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            SnackBar(content: Text("Please select at least one time")),
+                          );
+                          return;
+                        }
                         final medicine = MedicineModel(
                           name: nameController.text,
                           dosage: dosageController.text,

@@ -8,6 +8,7 @@ import 'package:medical_reminder/presentation/adding medicine/model/medicine_mod
 import 'package:medical_reminder/presentation/adding medicine/view/adding_medicine.dart';
 import 'package:medical_reminder/presentation/adding view report/model/report_model.dart';
 import 'package:medical_reminder/presentation/adding view report/view/adding_view_report.dart';
+import 'package:medical_reminder/presentation/adding%20appointment/model/appointment_model.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 import 'package:medical_reminder/presentation/check bmi/view/check_bmi.dart';
 import 'package:medical_reminder/presentation/edit view report/view/edit_report.dart';
@@ -29,10 +30,12 @@ void main() async {
   Hive.registerAdapter(UserModelAdapter());
   Hive.registerAdapter(MedicineModelAdapter());
   Hive.registerAdapter(ReportModelAdapter());
+  Hive.registerAdapter(AppointmentModelAdapter());
 
   await Hive.openBox<UserModel>('users');
   await Hive.openBox<MedicineModel>('medicines');
   await Hive.openBox<ReportModel>('reports');
+  await Hive.openBox<AppointmentModel>('appointments');
 
   runApp(MyApp());
 }
@@ -57,20 +60,24 @@ class MyApp extends StatelessWidget {
 
         AppRoute.editViewReport: (context) {
           final args = ModalRoute.of(context)!.settings.arguments as Map;
-          return EditViewReport(
-            report: args["report"],
-            index: args["index"],
-          );
+          return EditViewReport(report: args["report"], index: args["index"]);
         },
 
         AppRoute.addAppointment: (context) => AppointmentScreen(),
         AppRoute.addingAppointment: (context) => AddingAppointment(),
-        AppRoute.editAppointment: (context) => EditAppointment(),
+        AppRoute.editAppointment: (context) {
+          final args = ModalRoute.of(context)!.settings.arguments as Map;
+          return EditAppointment(
+            appointment: args["appointment"],
+            index: args["index"],
+          );
+        },
+
         AppRoute.manageMedicine: (context) => ManageMedicineScreen(),
         AppRoute.addingMedicine: (context) => AddingMedicine(),
         AppRoute.checkBmi: (context) => CheckBmiScreen(),
         AppRoute.addingBmi: (context) => AddingBmi(),
-       AppRoute.statistics: (context) => StatisticsScreen(),
+        AppRoute.statistics: (context) => StatisticsScreen(),
         AppRoute.setting: (context) => SettingScreen(),
         AppRoute.mainPage: (context) => MainPage(),
       },
