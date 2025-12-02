@@ -3,7 +3,7 @@ import 'package:hive_flutter/adapters.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/presentation/add appointment/view/appointment_screen.dart';
 import 'package:medical_reminder/presentation/adding appointment/view/adding_appointment.dart';
-import 'package:medical_reminder/presentation/adding bmi/view/adding_bmi.dart';
+import 'package:medical_reminder/presentation/add%20bmi/view/adding_bmi.dart';
 import 'package:medical_reminder/presentation/adding medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/adding medicine/view/adding_medicine.dart';
 import 'package:medical_reminder/presentation/adding view report/model/report_model.dart';
@@ -43,7 +43,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoute.splash,
+      initialRoute: AppRoute.mainPage,
 
       routes: {
         AppRoute.splash: (context) => const SplashScreen(),

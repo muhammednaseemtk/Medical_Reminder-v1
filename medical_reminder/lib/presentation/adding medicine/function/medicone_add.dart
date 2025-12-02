@@ -1,3 +1,4 @@
+import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/model/medicine_model.dart';
@@ -5,27 +6,33 @@ import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
 
 ValueNotifier<List<MedicineModel>> medicineList = ValueNotifier([]);
 
+Future<Box<MedicineModel>> _medicineBox() async {
+  final boxName = '${UserFunctions.loggedInUserEmail}_medicines';
+  log(UserFunctions.loggedInUserEmail ?? 'no email');
+  return await Hive.openBox<MedicineModel>(boxName);
+}
+
 Future<void> addMedicine(MedicineModel value) async {
-  final medicineAdd = await Hive.openBox<MedicineModel>("${UserFunctions.loggedInUserEmail}_medicines");
+  final medicineAdd = await _medicineBox();
   await medicineAdd.add(value);
   getAllMedicines();
 }
 
 Future<void> getAllMedicines() async {
-  final medicineAdd = await Hive.openBox<MedicineModel>("medicines");
+  final medicineAdd = await _medicineBox();
   medicineList.value.clear();
   medicineList.value.addAll(medicineAdd.values);
   medicineList.notifyListeners();
 }
 
 Future<void> deleteMedicine(int index) async {
-  final medicineAdd = await Hive.openBox<MedicineModel>("medicines");
+  final medicineAdd = await _medicineBox();
   medicineAdd.deleteAt(index);
   getAllMedicines();
 }
 
 Future<void> editMedicine(int index, MedicineModel value) async {
-  final medicineAdd = await Hive.openBox<MedicineModel>("medicines");
+  final medicineAdd = await _medicineBox();
   medicineAdd.putAt(index, value);
   getAllMedicines();
 }
