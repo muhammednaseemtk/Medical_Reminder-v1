@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/model/medicine_model.dart';
+import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
 
 ValueNotifier<List<MedicineModel>> medicineList = ValueNotifier([]);
 
 Future<void> addMedicine(MedicineModel value) async {
-  final medicineAdd = await Hive.openBox<MedicineModel>("medicines");
+  final medicineAdd = await Hive.openBox<MedicineModel>("${UserFunctions.loggedInUserEmail}_medicines");
   await medicineAdd.add(value);
   getAllMedicines();
 }

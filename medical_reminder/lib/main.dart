@@ -33,10 +33,6 @@ void main() async {
   Hive.registerAdapter(AppointmentModelAdapter());
 
   await Hive.openBox<UserModel>('users');
-  // await Hive.openBox<MedicineModel>('medicines');
-  // await Hive.openBox<ReportModel>('reports');
-  // await Hive.openBox<AppointmentModel>('appointments');
-
   runApp(MyApp());
 }
 
@@ -47,7 +43,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoute.mainPage,
+      initialRoute: AppRoute.splash,
 
       routes: {
         AppRoute.splash: (context) => const SplashScreen(),
