@@ -18,7 +18,7 @@ class BmiModelAdapter extends TypeAdapter<BmiModel> {
     };
     return BmiModel(
       height: fields[0] as String,
-      Weight: fields[1] as String,
+      weight: fields[1] as String,
     );
   }
 
@@ -29,7 +29,7 @@ class BmiModelAdapter extends TypeAdapter<BmiModel> {
       ..writeByte(0)
       ..write(obj.height)
       ..writeByte(1)
-      ..write(obj.Weight);
+      ..write(obj.weight);
   }
 
   @override

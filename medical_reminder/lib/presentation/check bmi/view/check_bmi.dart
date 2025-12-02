@@ -20,8 +20,15 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
         title: Text('Check BMI',style: TextStyle(fontWeight: FontWeight.bold),),
         centerTitle: true,
       ),
-      body: Column(
-        children: [],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('asset/image/bmi.jpg',width: 280,),
+            SizedBox(height: 10,),
+            Text('No BMI data found',style: TextStyle(color: AppColors.lightShade),)
+          ],
+        ),
       ),
       floatingActionButton:  Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25,vertical: 25),

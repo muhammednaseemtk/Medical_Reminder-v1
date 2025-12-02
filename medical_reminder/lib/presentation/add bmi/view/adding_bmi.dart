@@ -71,7 +71,7 @@ class _AddingBmiState extends State<AddingBmi> {
                       if (formKey.currentState!.validate()) {
                         final bmi = BmiModel(
                           height: heightController.text.trim(),
-                          Weight: weightController.text.trim(),
+                          weight: weightController.text.trim(),
                         );
                         await addBmi(bmi);
 

@@ -8,10 +8,10 @@ class BmiModel {
   String height;
 
   @HiveField(1)
-  String Weight;
+  String weight;
 
   BmiModel({
     required this.height,
-    required this.Weight
+    required this.weight
   });
 }

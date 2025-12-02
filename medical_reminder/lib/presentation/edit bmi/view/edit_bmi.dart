@@ -6,7 +6,9 @@ import 'package:medical_reminder/presentation/add%20bmi/model/bmi_model.dart';
 import 'package:medical_reminder/presentation/adding%20view%20report/widget/add_report.dart';
 
 class EditBmi extends StatefulWidget {
-  const EditBmi({super.key});
+  final BmiModel bmi;
+  final int index;
+  const EditBmi({super.key,required this.bmi,required this.index});
 
   @override
   State<EditBmi> createState() => _EditBmiState();
@@ -16,6 +18,13 @@ class _EditBmiState extends State<EditBmi> {
   final TextEditingController heightController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
   final formKey = GlobalKey<FormState>();
+
+  @override
+  void initState() {
+    super.initState();
+    heightController.text = widget.bmi.height;
+    weightController.text = widget.bmi.weight;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -71,7 +80,7 @@ class _EditBmiState extends State<EditBmi> {
                       if (formKey.currentState!.validate()) {
                         final bmi = BmiModel(
                           height: heightController.text.trim(),
-                          Weight: weightController.text.trim(),
+                          weight: weightController.text.trim(),
                         );
                         await addBmi(bmi);
 
