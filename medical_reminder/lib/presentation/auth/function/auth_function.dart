@@ -1,6 +1,6 @@
 import 'package:hive_flutter/adapters.dart';
 import 'package:medical_reminder/presentation/add%20bmi/model/bmi_model.dart';
-import 'package:medical_reminder/presentation/add%20%20appointment/model/appointment_model.dart';
+import 'package:medical_reminder/presentation/adding%20appointment/model/appointment_model.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/adding%20view%20report/model/report_model.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
