@@ -1,4 +1,5 @@
 import 'package:hive_flutter/adapters.dart';
+import 'package:medical_reminder/presentation/add%20bmi/model/bmi_model.dart';
 import 'package:medical_reminder/presentation/adding%20appointment/model/appointment_model.dart';
 import 'package:medical_reminder/presentation/adding%20medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/adding%20view%20report/model/report_model.dart';
@@ -18,12 +19,12 @@ Future<bool> loginUser(String email, String password) async {
   final user = userBox.get(email);
   if (user!.password != password) return false;
 
-  // Save logged in email
   loggedInUserEmail = email;
 
   await Hive.openBox<MedicineModel>('${email}_medicines');
   await Hive.openBox<ReportModel>('${email}_reports');
   await Hive.openBox<AppointmentModel>('${email}_appointments');
+  await Hive.openBox<BmiModel>('${email}_bmis');
 
   return true;
 }

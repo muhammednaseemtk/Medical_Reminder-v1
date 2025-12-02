@@ -5,14 +5,14 @@ import 'package:medical_reminder/presentation/add%20bmi/function/bmi_add.dart';
 import 'package:medical_reminder/presentation/add%20bmi/model/bmi_model.dart';
 import 'package:medical_reminder/presentation/adding%20view%20report/widget/add_report.dart';
 
-class AddingBmi extends StatefulWidget {
-  const AddingBmi({super.key});
+class EditBmi extends StatefulWidget {
+  const EditBmi({super.key});
 
   @override
-  State<AddingBmi> createState() => _AddingBmiState();
+  State<EditBmi> createState() => _EditBmiState();
 }
 
-class _AddingBmiState extends State<AddingBmi> {
+class _EditBmiState extends State<EditBmi> {
   final TextEditingController heightController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
   final formKey = GlobalKey<FormState>();

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/presentation/add appointment/view/appointment_screen.dart';
+import 'package:medical_reminder/presentation/add%20bmi/model/bmi_model.dart';
 import 'package:medical_reminder/presentation/adding appointment/view/adding_appointment.dart';
 import 'package:medical_reminder/presentation/add%20bmi/view/adding_bmi.dart';
 import 'package:medical_reminder/presentation/adding medicine/model/medicine_model.dart';
@@ -31,6 +32,7 @@ void main() async {
   Hive.registerAdapter(MedicineModelAdapter());
   Hive.registerAdapter(ReportModelAdapter());
   Hive.registerAdapter(AppointmentModelAdapter());
+  Hive.registerAdapter(BmiModelAdapter());
 
   await Hive.openBox<UserModel>('users');
   runApp(MyApp());

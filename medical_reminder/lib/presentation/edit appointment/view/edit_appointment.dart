@@ -43,8 +43,6 @@ class _EditAppointmentState extends State<EditAppointment> {
   @override
   void initState() {
     super.initState();
-
-    /// PREFILL VALUES
     appointmentController.text = widget.appointment.title;
     nameController.text = widget.appointment.name;
     dateController.text = widget.appointment.date;
