@@ -15,7 +15,7 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
   @override
   void initState() {
     super.initState();
-    getAllBmi(); // Load all BMI on opening screen
+    getAllBmi();
   }
 
   @override
@@ -31,10 +31,6 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
         ),
         centerTitle: true,
       ),
-
-      // -----------------------------------------------------
-      // BMI LIST VIEW WITH CARD DESIGN
-      // -----------------------------------------------------
       body: ValueListenableBuilder<List<BmiModel>>(
         valueListenable: bmiList,
         builder: (context, list, _) {
@@ -48,7 +44,7 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
                   Text(
                     'No BMI data found',
                     style: TextStyle(color: AppColors.lightShade),
-                  )
+                  ),
                 ],
               ),
             );
@@ -56,7 +52,10 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
 
           return ListView.separated(
             padding: const EdgeInsets.all(15),
-            itemBuilder: (context, index) {
+            itemCount: list.length,
+            separatorBuilder: (_, __) => SizedBox(height: 10),
+            itemBuilder: (context, i) {
+              final index = list.length - 1 - i;
               final bmi = list[index];
 
               return Card(
@@ -98,15 +97,15 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
                               Navigator.pushNamed(
                                 context,
                                 AppRoute.editBmi,
-                                arguments: {
-                                  "index": index,
-                                  "model": bmi,
-                                },
+                                arguments: {"index": index, "bmi": bmi},
                               );
                             },
                           ),
                           IconButton(
-                            icon: const Icon(Icons.delete, color: AppColors.icon),
+                            icon: const Icon(
+                              Icons.delete,
+                              color: AppColors.icon,
+                            ),
                             onPressed: () {
                               deleteBmi(index);
                             },
@@ -118,8 +117,6 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
                 ),
               );
             },
-            separatorBuilder: (_, __) => const SizedBox(height: 10),
-            itemCount: list.length,
           );
         },
       ),

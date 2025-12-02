@@ -14,6 +14,7 @@ import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 import 'package:medical_reminder/presentation/check bmi/view/check_bmi.dart';
 import 'package:medical_reminder/presentation/edit view report/view/edit_report.dart';
 import 'package:medical_reminder/presentation/edit%20appointment/view/edit_appointment.dart';
+import 'package:medical_reminder/presentation/edit%20bmi/view/edit_bmi.dart';
 import 'package:medical_reminder/presentation/home/view/home_screen.dart';
 import 'package:medical_reminder/presentation/auth/login/view/login_screen.dart';
 import 'package:medical_reminder/presentation/auth/sign_up/view/sign_up_screen.dart';
@@ -75,6 +76,10 @@ class MyApp extends StatelessWidget {
         AppRoute.addingMedicine: (context) => AddingMedicine(),
         AppRoute.checkBmi: (context) => CheckBmiScreen(),
         AppRoute.addingBmi: (context) => AddingBmi(),
+        AppRoute.editBmi: (context) {
+          final args = ModalRoute.of(context)!.settings.arguments as Map;
+          return EditBmi(bmi: args["bmi"], index: args['index']);
+        },
         AppRoute.statistics: (context) => StatisticsScreen(),
         AppRoute.setting: (context) => SettingScreen(),
         AppRoute.mainPage: (context) => MainPage(),

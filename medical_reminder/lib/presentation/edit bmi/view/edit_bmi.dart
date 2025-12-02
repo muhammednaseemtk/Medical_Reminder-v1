@@ -78,11 +78,11 @@ class _EditBmiState extends State<EditBmi> {
                     text: 'Save BMI',
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        final bmi = BmiModel(
+                        final updateBmi = BmiModel(
                           height: heightController.text.trim(),
                           weight: weightController.text.trim(),
                         );
-                        await addBmi(bmi);
+                        await editBmi(widget.index,updateBmi);
 
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
