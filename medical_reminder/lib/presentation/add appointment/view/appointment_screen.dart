@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/adding appointment/function/appointment_add.dart';
+import 'package:medical_reminder/presentation/edit%20appointment/view/edit_appointment.dart';
 
 class AppointmentScreen extends StatefulWidget {
   const AppointmentScreen({super.key});
@@ -73,21 +74,41 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                   title: Text(
                     data.title,
                     style: const TextStyle(
-                        fontSize: 16, fontWeight: FontWeight.bold),
+                        fontSize: 16,fontWeight: FontWeight.w500),
                   ),
 
                   subtitle: Text(
                     "Doctor: ${data.name}\nDate: ${data.date}",
                   ),
 
-                  trailing: IconButton(
-                    icon: Icon(Icons.delete, color: AppColors.icon),
-                    onPressed: () {
-                      deleteAppointment(index);
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text("Appointment deleted")),
-                      );
-                    },
+                  trailing: Row(
+                    mainAxisSize: MainAxisSize.min,
+                    children: [
+                      IconButton(
+                        icon: Icon(Icons.edit, color: AppColors.icon),
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EditAppointment(
+                                appointment: data,
+                                index: index,
+                              ),
+                            ),
+                          );
+                        },
+                      ),
+                      IconButton(
+                        icon: Icon(Icons.delete, color: AppColors.icon),
+                        onPressed: () {
+                          deleteAppointment(index);
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                                content: Text("Appointment deleted")),
+                          );
+                        },
+                      ),
+                    ],
                   ),
                 ),
               );

@@ -1,4 +1,7 @@
 import 'package:hive_flutter/adapters.dart';
+import 'package:medical_reminder/presentation/adding%20appointment/model/appointment_model.dart';
+import 'package:medical_reminder/presentation/adding%20medicine/model/medicine_model.dart';
+import 'package:medical_reminder/presentation/adding%20view%20report/model/report_model.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 
 class UserFunctions {
@@ -8,15 +11,23 @@ class UserFunctions {
     return true;
   }
 
-  Future<bool> loginUser(String email, String password)async{
+  Future<bool> loginUser(String email, String password) async {
     if (!userBox.containsKey(email)) {
       return false;
     }
     final user = userBox.get(email);
-     await Hive.openBox(email);
-    return user!.password == password;
+    if (user!.password != password) {
+      return false;
+    }
+
+    await Hive.openBox<MedicineModel>('${email}_medicines');
+    await Hive.openBox<ReportModel>('${email}_reports');
+    await Hive.openBox<AppointmentModel>('${email}_appointments');
+
+    return true;
   }
-  UserModel? getUser(String email){
+
+  UserModel? getUser(String email) {
     return userBox.get(email);
   }
 }

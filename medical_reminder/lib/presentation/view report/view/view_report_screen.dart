@@ -59,7 +59,7 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
               return Card(
                 color: AppColors.white,
                 child: ListTile(
-                  title: Text(report.name),
+                  title: Text(report.name,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                   subtitle: Text("Date: ${report.date}\nDr: ${report.drName}"),
 
                   trailing: Row(
