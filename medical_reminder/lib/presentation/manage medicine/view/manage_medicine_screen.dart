@@ -26,47 +26,18 @@ class _ManageMedicineScreenState extends State<ManageMedicineScreen> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: HorizontalWeekCalendar(
-              minDate: DateTime(2023, 1, 31),
-              maxDate: DateTime(2026, 1, 31),
-              initialDate: DateTime(2024, 1, 15),
-              weekStartFrom: WeekStartFrom.Monday,
-              onDateChange: (date) {
-                setState(() {
-                  selectedDate = date;
-                });
-              },
-              activeBackgroundColor: AppColors.icon,
-              activeTextColor: AppColors.white,
-              inactiveBackgroundColor: AppColors.white,
-              inactiveTextColor: AppColors.txtColor,
-              disabledBackgroundColor: AppColors.shadow,
-              disabledTextColor: AppColors.shadow,
-              borderRadius: BorderRadius.circular(35),
-              monthColor: AppColors.txtColor,
-              showNavigationButtons: false,
-            ),
-          ),
-          Expanded(
-            child: Center(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: [
-                  Image.asset('asset/image/medicine.jpg', width: 240),
-                  Text(
-                    'Add Medicine Reminder',
-                    style: TextStyle(fontSize: 15),
-                  ),
-                  Text('No reminders available. Tap the button below to create one',style: TextStyle(color: AppColors.lightShade,fontSize: 12),)
-                ],
-              ),
-            ),
-          ),
-        ],
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Image.asset('asset/image/medicine.jpg', width: 240),
+                    Text(
+                      'Add Medicine Reminder',
+                      style: TextStyle(fontSize: 15),
+                    ),
+                    Text('No reminders available. Tap the button below to create one',style: TextStyle(color: AppColors.lightShade,fontSize: 12),)
+          ],
+        ),
       ),
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),

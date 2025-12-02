@@ -10,24 +10,17 @@ class MedicineModel {
   @HiveField(1)
   String dosage;
 
-  @HiveField(2)
-  String type;
-
   @HiveField(3)
   String startDate;
 
   @HiveField(4)
   String endDate;
 
-  @HiveField(5)
-  List<String> times;
 
   MedicineModel({
     required this.name,
     required this.dosage,
-    required this.type,
     required this.startDate,
     required this.endDate,
-    required this.times
   });
 }
