@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/common/widget/common_button.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/adding view report/widget/report_date.dart';
-import 'package:medical_reminder/presentation/adding view report/function/reports_add.dart';
-import 'package:medical_reminder/presentation/adding view report/model/report_model.dart';
-import 'package:medical_reminder/presentation/adding view report/widget/add_report.dart';
+import 'package:medical_reminder/presentation/add%20view%20report/widget/report_date.dart';
+import 'package:medical_reminder/presentation/add%20view%20report/function/reports_add.dart';
+import 'package:medical_reminder/presentation/add%20view%20report/model/report_model.dart';
+import 'package:medical_reminder/presentation/add%20view%20report/widget/add_report.dart';
 
 class EditViewReport extends StatefulWidget {
   final ReportModel report;

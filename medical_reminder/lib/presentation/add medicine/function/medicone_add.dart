@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:medical_reminder/presentation/adding%20medicine/model/medicine_model.dart';
+import 'package:medical_reminder/presentation/add%20medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
 
 ValueNotifier<List<MedicineModel>> medicineList = ValueNotifier([]);

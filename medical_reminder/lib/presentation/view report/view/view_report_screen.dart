@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/adding view report/function/reports_add.dart';
+import 'package:medical_reminder/presentation/add%20view%20report/function/reports_add.dart';
 
 class ViewReportScreen extends StatefulWidget {
   const ViewReportScreen({super.key});

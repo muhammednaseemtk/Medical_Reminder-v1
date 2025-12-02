@@ -3,10 +3,10 @@ import 'package:medical_reminder/common/widget/common_button.dart';
 import 'package:medical_reminder/common/widget/custom_text_field.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/adding view report/widget/report_date.dart';
-import 'package:medical_reminder/presentation/adding%20view%20report/function/reports_add.dart';
-import 'package:medical_reminder/presentation/adding%20view%20report/model/report_model.dart';
-import 'package:medical_reminder/presentation/adding%20view%20report/widget/add_report.dart';
+import 'package:medical_reminder/presentation/add%20view%20report/widget/report_date.dart';
+import 'package:medical_reminder/presentation/add%20view%20report/function/reports_add.dart';
+import 'package:medical_reminder/presentation/add%20view%20report/model/report_model.dart';
+import 'package:medical_reminder/presentation/add%20view%20report/widget/add_report.dart';
 
 class AddingViewReport extends StatefulWidget {
   const AddingViewReport({super.key});

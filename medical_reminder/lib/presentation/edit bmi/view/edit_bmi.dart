@@ -3,7 +3,7 @@ import 'package:medical_reminder/common/widget/common_button.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/add%20bmi/function/bmi_add.dart';
 import 'package:medical_reminder/presentation/add%20bmi/model/bmi_model.dart';
-import 'package:medical_reminder/presentation/adding%20view%20report/widget/add_report.dart';
+import 'package:medical_reminder/presentation/add%20view%20report/widget/add_report.dart';
 
 class EditBmi extends StatefulWidget {
   final BmiModel bmi;
