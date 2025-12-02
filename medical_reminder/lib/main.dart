@@ -33,9 +33,9 @@ void main() async {
   Hive.registerAdapter(AppointmentModelAdapter());
 
   await Hive.openBox<UserModel>('users');
-  await Hive.openBox<MedicineModel>('medicines');
-  await Hive.openBox<ReportModel>('reports');
-  await Hive.openBox<AppointmentModel>('appointments');
+  // await Hive.openBox<MedicineModel>('medicines');
+  // await Hive.openBox<ReportModel>('reports');
+  // await Hive.openBox<AppointmentModel>('appointments');
 
   runApp(MyApp());
 }

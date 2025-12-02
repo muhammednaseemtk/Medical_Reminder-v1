@@ -10,22 +10,23 @@ class UserFunctions {
     await userBox.put(user.email, user);
     return true;
   }
+  static String? loggedInUserEmail;
 
-  Future<bool> loginUser(String email, String password) async {
-    if (!userBox.containsKey(email)) {
-      return false;
-    }
-    final user = userBox.get(email);
-    if (user!.password != password) {
-      return false;
-    }
+Future<bool> loginUser(String email, String password) async {
+  if (!userBox.containsKey(email)) return false;
 
-    await Hive.openBox<MedicineModel>('${email}_medicines');
-    await Hive.openBox<ReportModel>('${email}_reports');
-    await Hive.openBox<AppointmentModel>('${email}_appointments');
+  final user = userBox.get(email);
+  if (user!.password != password) return false;
 
-    return true;
-  }
+  // Save logged in email
+  loggedInUserEmail = email;
+
+  await Hive.openBox<MedicineModel>('${email}_medicines');
+  await Hive.openBox<ReportModel>('${email}_reports');
+  await Hive.openBox<AppointmentModel>('${email}_appointments');
+
+  return true;
+}
 
   UserModel? getUser(String email) {
     return userBox.get(email);
