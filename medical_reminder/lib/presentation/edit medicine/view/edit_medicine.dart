@@ -52,7 +52,7 @@ class _EditMedicineState extends State<EditMedicine> {
         backgroundColor: AppColors.icon,
         foregroundColor: AppColors.white,
         title: Text(
-          "Add Medicine",
+          "Edit Medicine",
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -175,7 +175,7 @@ class _EditMedicineState extends State<EditMedicine> {
                         await editMedicine(widget.index,updateMedicine);
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(content: Text("Medicine Added")),
+                          SnackBar(content: Text("Medicine edited")),
                         );
                       }
                     },

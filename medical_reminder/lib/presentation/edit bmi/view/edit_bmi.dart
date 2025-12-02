@@ -33,7 +33,7 @@ class _EditBmiState extends State<EditBmi> {
       appBar: AppBar(
         foregroundColor: AppColors.white,
         backgroundColor: AppColors.icon,
-        title: Text('Add BMI', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text('Edit BMI', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: Padding(
@@ -87,7 +87,7 @@ class _EditBmiState extends State<EditBmi> {
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("Bmi Added Successfully"),
+                            content: Text("Bmi edited"),
                           ),
                         );
                       }

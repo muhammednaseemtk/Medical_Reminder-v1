@@ -140,6 +140,9 @@ class _EditViewReportState extends State<EditViewReport> {
                         await editReport(widget.index, updatedReport);
 
                         Navigator.pop(context);
+                         ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Report edited")),
+                        );
                       }
                     },
                     textColor: AppColors.white,

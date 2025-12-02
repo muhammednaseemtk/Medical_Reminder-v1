@@ -136,14 +136,17 @@ class _EditAppointmentState extends State<EditAppointment> {
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
                         final updatedAppointment = AppointmentModel(
-                          title: appointmentController.text,
-                          name: nameController.text,
-                          date: dateController.text,
+                          title: appointmentController.text.trim(),
+                          name: nameController.text.trim(),
+                          date: dateController.text.trim(),
                         );
 
                         await editAppointment(widget.index, updatedAppointment);
 
                         Navigator.pop(context);
+                         ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Appointment edited")),
+                        );
                       }
                     },
                     textColor: AppColors.white,
