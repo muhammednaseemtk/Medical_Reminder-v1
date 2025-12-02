@@ -83,9 +83,6 @@ class _AddingMedicineState extends State<AddingMedicine> {
               children: [
                 Column(
                   children: [
-                    // ------------------------
-                    // MEDICINE TYPE VALIDATION
-                    // ------------------------
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: Align(
@@ -152,10 +149,6 @@ class _AddingMedicineState extends State<AddingMedicine> {
                     ),
             
                     SizedBox(height: 20),
-            
-                    // ------------------------
-                    // DATE VALIDATION
-                    // ------------------------
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
@@ -228,12 +221,7 @@ class _AddingMedicineState extends State<AddingMedicine> {
                         ),
                       ],
                     ),
-            
                     SizedBox(height: 20),
-            
-                    // ----------------------------
-                    // FREQUENCY VALIDATION
-                    // ----------------------------
                     Padding(
                       padding: const EdgeInsets.only(left: 5),
                       child: Align(
@@ -276,10 +264,6 @@ class _AddingMedicineState extends State<AddingMedicine> {
                     ),
                   ],
                 ),
-            
-                // ------------------------------
-                // SAVE BUTTON
-                // ------------------------------
                 Column(
                   children: [
                     CommonButton(

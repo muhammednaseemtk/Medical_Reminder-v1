@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
-import 'package:medical_reminder/presentation/add appointment/view/appointment_screen.dart';
+import 'package:medical_reminder/presentation/adding%20appointment/view/appointment_screen.dart';
 import 'package:medical_reminder/presentation/add%20bmi/model/bmi_model.dart';
-import 'package:medical_reminder/presentation/adding appointment/view/adding_appointment.dart';
+import 'package:medical_reminder/presentation/add%20%20appointment/view/adding_appointment.dart';
 import 'package:medical_reminder/presentation/add%20bmi/view/adding_bmi.dart';
 import 'package:medical_reminder/presentation/adding medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/adding medicine/view/adding_medicine.dart';
 import 'package:medical_reminder/presentation/adding view report/model/report_model.dart';
 import 'package:medical_reminder/presentation/adding view report/view/adding_view_report.dart';
-import 'package:medical_reminder/presentation/adding%20appointment/model/appointment_model.dart';
+import 'package:medical_reminder/presentation/add%20%20appointment/model/appointment_model.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 import 'package:medical_reminder/presentation/check bmi/view/check_bmi.dart';
 import 'package:medical_reminder/presentation/edit view report/view/edit_report.dart';
