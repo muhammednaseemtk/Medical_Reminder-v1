@@ -137,7 +137,7 @@ class _EditViewReportState extends State<EditViewReport> {
                           drName: reportDrNameController.text,
                         );
 
-                        await editReport(widget.index, updatedReport);
+                        await Report().editReport(widget.index, updatedReport);
 
                         Navigator.pop(context);
                          ScaffoldMessenger.of(context).showSnackBar(

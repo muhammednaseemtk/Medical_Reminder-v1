@@ -20,14 +20,33 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
   int bmiCount = 0;
   int medicineCount = 0;
   int reportCount = 0;
+@override
+void initState() {
+  super.initState();
+  loadCounts();
+  setupListeners();
+}
 
-  @override
-  void initState() {
-    super.initState();
-    loadCounts();
-  }
+void setupListeners() async {
+  final email = UserFunctions.loggedInUserEmail;
+
+  final appointmentBox =
+      await Hive.openBox<AppointmentModel>("${email}_appointments");
+  final bmiBox = await Hive.openBox<BmiModel>("${email}_bmi");
+  final medicineBox =
+      await Hive.openBox<MedicineModel>("${email}_medicines");
+  final reportBox =
+      await Hive.openBox<ReportModel>("${email}_reports");
+
+  appointmentBox.listenable().addListener(() => loadCounts());
+  bmiBox.listenable().addListener(() => loadCounts());
+  medicineBox.listenable().addListener(() => loadCounts());
+  reportBox.listenable().addListener(() => loadCounts());
+}
+
 
   Future<void> loadCounts() async {
+    
     final email = UserFunctions.loggedInUserEmail;
 
     final appointmentBox =
@@ -67,6 +86,8 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
         child: Column(
           children: [
             const SizedBox(height: 20),
+
+            // Pie Chart
             if (total == 0)
               const Padding(
                 padding: EdgeInsets.only(top: 100),
@@ -82,7 +103,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                     centerSpaceRadius: 40,
                     sections: [
                       PieChartSectionData(
-                        color: AppColors.icon1,
+                        color: Colors.blue,
                         value: appointmentCount.toDouble(),
                         title: "Appointments\n$appointmentCount",
                         radius: 90,
@@ -92,7 +113,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                             color: Colors.white),
                       ),
                       PieChartSectionData(
-                        color: AppColors.icon,
+                        color: Colors.green,
                         value: bmiCount.toDouble(),
                         title: "BMI\n$bmiCount",
                         radius: 90,
@@ -102,7 +123,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                             color: Colors.white),
                       ),
                       PieChartSectionData(
-                        color: AppColors.icon3,
+                        color: Colors.orange,
                         value: medicineCount.toDouble(),
                         title: "Medicine\n$medicineCount",
                         radius: 90,
@@ -112,7 +133,7 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
                             color: Colors.white),
                       ),
                       PieChartSectionData(
-                        color: AppColors.icon2,
+                        color: Colors.red,
                         value: reportCount.toDouble(),
                         title: "Reports\n$reportCount",
                         radius: 90,
@@ -129,10 +150,10 @@ class _StatisticsScreenState extends State<StatisticsScreen> {
             const SizedBox(height: 20),
 
             // Info List
-            infoTile("Total Appointments", appointmentCount, AppColors.icon1),
-            infoTile("BMI Records", bmiCount, AppColors.icon),
-            infoTile("Medicines", medicineCount, AppColors.icon3),
-            infoTile("Reports", reportCount, AppColors.icon2),
+            infoTile("Total Appointments", appointmentCount, Colors.blue),
+            infoTile("BMI Records", bmiCount, Colors.green),
+            infoTile("Medicines", medicineCount, Colors.orange),
+            infoTile("Reports", reportCount, Colors.red),
 
             const SizedBox(height: 30),
           ],

@@ -14,7 +14,7 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
   @override
   void initState() {
     super.initState();
-    getAllReports(); 
+   Report().getAllReports(); 
   }
 
   @override
@@ -81,7 +81,7 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
 
                       IconButton(
                         icon: Icon(Icons.delete, color: AppColors.icon),
-                        onPressed: () => deleteReport(index),
+                        onPressed: () => Report().deleteReport(index),
                       ),
                     ],
                   ),

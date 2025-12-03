@@ -122,7 +122,7 @@ class _AddingViewReportState extends State<AddingViewReport> {
                           drName: reportDrNameController.text,
                           date: dateController.text,
                         );
-                        await addReport(report);
+                        await Report().addReport(report);
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
