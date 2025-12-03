@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:medical_reminder/presentation/add%20bmi/model/bmi_model.dart';
+import 'package:medical_reminder/presentation/check%20bmi/model/bmi_model.dart';
 import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
 
 ValueNotifier<List<BmiModel>> bmiList = ValueNotifier([]);

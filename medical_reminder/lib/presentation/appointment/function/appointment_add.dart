@@ -1,7 +1,7 @@
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:medical_reminder/presentation/add%20appointment/model/appointment_model.dart';
+import 'package:medical_reminder/presentation/appointment/model/appointment_model.dart';
 import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
 
 ValueNotifier<List<AppointmentModel>> appointmentList = ValueNotifier([]);
@@ -23,6 +23,13 @@ Future<void> getAllAppointment() async {
   appointmentList.value.clear();
   appointmentList.value.addAll(appointmentAdd.values);
   appointmentList.notifyListeners();
+  getDataCount();
+}
+
+int getDataCount(){
+ int count = appointmentList.value.length;
+ log('appointment count ${count.toString()}');
+return count;
 }
 
 Future<void> deleteAppointment(int index) async {
