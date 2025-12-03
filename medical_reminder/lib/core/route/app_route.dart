@@ -11,7 +11,7 @@ class AppRoute {
   static const String editAppointment = '/editAppointment';
   static const String manageMedicine = '/manageMedicine';
   static const String addingMedicine = '/addingMedicine';
-  static const String edeitMedicine = '/editMedicine';
+  static const String editMedicine = '/editMedicine';
   static const String checkBmi = '/checkBmi';
   static const String addingBmi = '/addingBmi';
   static const String editBmi = '/editBmi';

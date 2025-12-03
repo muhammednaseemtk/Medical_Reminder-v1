@@ -82,7 +82,7 @@ class _ManageMedicineScreenState extends State<ManageMedicineScreen> {
                         onPressed: () {
                           Navigator.pushNamed(
                             context,
-                            AppRoute.addingMedicine,
+                            AppRoute.editMedicine,
                             arguments: {
                               "index": index,
                               "medicines": item,

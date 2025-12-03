@@ -75,7 +75,7 @@ class MyApp extends StatelessWidget {
 
         AppRoute.manageMedicine: (context) => ManageMedicineScreen(),
         AppRoute.addingMedicine: (context) => AddingMedicine(),
-        AppRoute.edeitMedicine:(context) {
+        AppRoute.editMedicine:(context) {
           final args = ModalRoute.of(context)!.settings.arguments as Map;
           return EditMedicine(medicine: args['medicines'],index: args['index'],);
         },
