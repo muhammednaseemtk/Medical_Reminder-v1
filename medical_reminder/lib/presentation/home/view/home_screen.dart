@@ -68,7 +68,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 children: [
                   MenuCard(
                     image: 'asset/image/addappointment.jpg',
-                    text: 'Add Appointment',
+                    text: 'Appointment',
                     onTap: () {
                       Navigator.pushNamed(context, AppRoute.addAppointment);
                     },
