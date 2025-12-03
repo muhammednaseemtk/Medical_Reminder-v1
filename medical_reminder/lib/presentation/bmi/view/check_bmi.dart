@@ -26,7 +26,7 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
         foregroundColor: AppColors.white,
         backgroundColor: AppColors.icon,
         title: const Text(
-          'Check BMI',
+          'BMI',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
@@ -74,17 +74,15 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
                         children: [
                           Text(
                             "Height: ${bmi.height} cm",
-                            style: const TextStyle(
+                            style:  TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w500,
                             ),
                           ),
-                          const SizedBox(height: 5),
+                           SizedBox(height: 5),
                           Text(
                             "Weight: ${bmi.weight} kg",
-                            style: const TextStyle(
+                            style:  TextStyle(
                               fontSize: 16,
-                              fontWeight: FontWeight.w500,
                             ),
                           ),
                         ],

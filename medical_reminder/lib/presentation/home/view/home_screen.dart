@@ -53,7 +53,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   MenuCard(
                     image: 'asset/image/managemedicine.jpg',
-                    text: 'Manage Medicine',
+                    text: 'Medicine',
                     onTap: () {
                       Navigator.pushNamed(context, AppRoute.manageMedicine);
                     },
@@ -75,7 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   MenuCard(
                     image: 'asset/image/checkbmi.jpeg',
-                    text: 'Check BMI',
+                    text: 'BMI',
                     onTap: () {
                       Navigator.pushNamed(context, AppRoute.checkBmi);
                     },

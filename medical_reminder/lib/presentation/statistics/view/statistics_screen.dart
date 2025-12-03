@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:fl_chart/fl_chart.dart';
+import 'package:hive_flutter/hive_flutter.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/statistics/widget/quick_status.dart';
+import 'package:medical_reminder/presentation/appointment/model/appointment_model.dart';
+import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
+import 'package:medical_reminder/presentation/bmi/model/bmi_model.dart';
+import 'package:medical_reminder/presentation/medicine/model/medicine_model.dart';
+import 'package:medical_reminder/presentation/report/model/report_model.dart';
 
 class StatisticsScreen extends StatefulWidget {
   const StatisticsScreen({super.key});
@@ -10,82 +16,146 @@ class StatisticsScreen extends StatefulWidget {
 }
 
 class _StatisticsScreenState extends State<StatisticsScreen> {
+  int appointmentCount = 0;
+  int bmiCount = 0;
+  int medicineCount = 0;
+  int reportCount = 0;
+
+  @override
+  void initState() {
+    super.initState();
+    loadCounts();
+  }
+
+  Future<void> loadCounts() async {
+    final email = UserFunctions.loggedInUserEmail;
+
+    final appointmentBox =
+        await Hive.openBox<AppointmentModel>("${email}_appointments");
+    final bmiBox = await Hive.openBox<BmiModel>("${email}_bmi");
+    final medicineBox =
+        await Hive.openBox<MedicineModel>("${email}_medicines");
+    final reportBox = await Hive.openBox<ReportModel>("${email}_reports");
+
+    setState(() {
+      appointmentCount = appointmentBox.length;
+      bmiCount = bmiBox.length;
+      medicineCount = medicineBox.length;
+      reportCount = reportBox.length;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
+    final total = appointmentCount + bmiCount + medicineCount + reportCount;
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
-        title: Text(
+        title: const Text(
           'Statistics',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
         ),
         centerTitle: true,
         bottom: PreferredSize(
-          preferredSize: Size.fromHeight(1),
+          preferredSize: const Size.fromHeight(1),
           child: Container(color: AppColors.shadow, height: 1),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(height: 10),
-            Card(
-              elevation: 2,
-              color: AppColors.bgColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadiusGeometry.circular(15),
-              ),
-              child: Padding(
-                padding: const EdgeInsets.all(10),
-                child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      'Quick Status',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.bold,
+            const SizedBox(height: 20),
+            if (total == 0)
+              const Padding(
+                padding: EdgeInsets.only(top: 100),
+                child: Text("No data available",
+                    style: TextStyle(fontSize: 20)),
+              )
+            else
+              SizedBox(
+                height: 350,
+                child: PieChart(
+                  PieChartData(
+                    sectionsSpace: 3,
+                    centerSpaceRadius: 40,
+                    sections: [
+                      PieChartSectionData(
+                        color: AppColors.icon1,
+                        value: appointmentCount.toDouble(),
+                        title: "Appointments\n$appointmentCount",
+                        radius: 90,
+                        titleStyle: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
                       ),
-                    ),
-                    SizedBox(height: 15),
-                    QuickStatus(
-                      icon: Icons.check_circle_outline_outlined,
-                      iconColor: AppColors.icon,
-                      bgColor: AppColors.bgBtnColor,
-                      text: 'Current Streak',
-                      text1: 'Days on track',
-                      values: '12 days',
-                    ),
-                    SizedBox(height: 8,),
-                    Divider(),
-                    SizedBox(height: 8,),
-                    QuickStatus(
-                      icon: Icons.medication_outlined,
-                      iconColor: AppColors.icon1,
-                      bgColor: AppColors.bgBtnColor1,
-                      text: 'Active Medicine',
-                      text1: 'Currently taking',
-                      values: '11',
-                    ),
-                    SizedBox(height: 8,),
-                    Divider(),
-                    SizedBox(height: 8,),
-                    QuickStatus(
-                      icon: Icons.calendar_month_outlined,
-                      iconColor: AppColors.icon3,
-                      bgColor: AppColors.bgBtnColor3,
-                      text: 'Avg.Doses Per Day',
-                      text1: 'This month',
-                      values: '3.8',
-                    ),
-                    SizedBox(height: 8,),
-                  ],
+                      PieChartSectionData(
+                        color: AppColors.icon,
+                        value: bmiCount.toDouble(),
+                        title: "BMI\n$bmiCount",
+                        radius: 90,
+                        titleStyle: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      PieChartSectionData(
+                        color: AppColors.icon3,
+                        value: medicineCount.toDouble(),
+                        title: "Medicine\n$medicineCount",
+                        radius: 90,
+                        titleStyle: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                      PieChartSectionData(
+                        color: AppColors.icon2,
+                        value: reportCount.toDouble(),
+                        title: "Reports\n$reportCount",
+                        radius: 90,
+                        titleStyle: const TextStyle(
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white),
+                      ),
+                    ],
+                  ),
                 ),
               ),
-            ),
+
+            const SizedBox(height: 20),
+
+            // Info List
+            infoTile("Total Appointments", appointmentCount, AppColors.icon1),
+            infoTile("BMI Records", bmiCount, AppColors.icon),
+            infoTile("Medicines", medicineCount, AppColors.icon3),
+            infoTile("Reports", reportCount, AppColors.icon2),
+
+            const SizedBox(height: 30),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget infoTile(String title, int count, Color color) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
+      child: Row(
+        children: [
+          Container(
+            width: 15,
+            height: 15,
+            decoration:
+                BoxDecoration(shape: BoxShape.circle, color: color),
+          ),
+          const SizedBox(width: 10),
+          Text("$title: $count",
+              style: const TextStyle(fontSize: 17)),
+        ],
       ),
     );
   }
