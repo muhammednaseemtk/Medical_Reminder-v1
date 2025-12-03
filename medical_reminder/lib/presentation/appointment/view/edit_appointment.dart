@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/common/widget/common_button.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/view%20report/widget/add_report.dart';
-import 'package:medical_reminder/presentation/view%20report/widget/report_date.dart';
+import 'package:medical_reminder/presentation/report/widget/add_report.dart';
+import 'package:medical_reminder/presentation/report/widget/report_date.dart';
 import 'package:medical_reminder/presentation/appointment/function/appointment_add.dart';
 import 'package:medical_reminder/presentation/appointment/model/appointment_model.dart';
 

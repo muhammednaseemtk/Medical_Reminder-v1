@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/common/widget/common_button.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/view%20report/widget/report_date.dart';
-import 'package:medical_reminder/presentation/manage%20medicine/function/medicone_add.dart';
-import 'package:medical_reminder/presentation/manage%20medicine/model/medicine_model.dart';
-import 'package:medical_reminder/presentation/view%20report/widget/add_report.dart';
+import 'package:medical_reminder/presentation/report/widget/report_date.dart';
+import 'package:medical_reminder/presentation/medicine/function/medicone_add.dart';
+import 'package:medical_reminder/presentation/medicine/model/medicine_model.dart';
+import 'package:medical_reminder/presentation/report/widget/add_report.dart';
 
 class AddingMedicine extends StatefulWidget {
   const AddingMedicine({super.key});

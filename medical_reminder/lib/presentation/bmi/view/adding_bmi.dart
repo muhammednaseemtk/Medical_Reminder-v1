@@ -1,30 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/common/widget/common_button.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/check%20bmi/function/bmi_add.dart';
-import 'package:medical_reminder/presentation/check%20bmi/model/bmi_model.dart';
-import 'package:medical_reminder/presentation/view%20report/widget/add_report.dart';
+import 'package:medical_reminder/presentation/bmi/function/bmi_add.dart';
+import 'package:medical_reminder/presentation/bmi/model/bmi_model.dart';
+import 'package:medical_reminder/presentation/report/widget/add_report.dart';
 
-class EditBmi extends StatefulWidget {
-  final BmiModel bmi;
-  final int index;
-  const EditBmi({super.key,required this.bmi,required this.index});
+class AddingBmi extends StatefulWidget {
+  const AddingBmi({super.key});
 
   @override
-  State<EditBmi> createState() => _EditBmiState();
+  State<AddingBmi> createState() => _AddingBmiState();
 }
 
-class _EditBmiState extends State<EditBmi> {
+class _AddingBmiState extends State<AddingBmi> {
   final TextEditingController heightController = TextEditingController();
   final TextEditingController weightController = TextEditingController();
   final formKey = GlobalKey<FormState>();
-
-  @override
-  void initState() {
-    super.initState();
-    heightController.text = widget.bmi.height;
-    weightController.text = widget.bmi.weight;
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +24,7 @@ class _EditBmiState extends State<EditBmi> {
       appBar: AppBar(
         foregroundColor: AppColors.white,
         backgroundColor: AppColors.icon,
-        title: Text('Edit BMI', style: TextStyle(fontWeight: FontWeight.bold)),
+        title: Text('Add BMI', style: TextStyle(fontWeight: FontWeight.bold)),
         centerTitle: true,
       ),
       body: Padding(
@@ -78,16 +69,16 @@ class _EditBmiState extends State<EditBmi> {
                     text: 'Save BMI',
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        final updateBmi = BmiModel(
+                        final bmi = BmiModel(
                           height: heightController.text.trim(),
                           weight: weightController.text.trim(),
                         );
-                        await editBmi(widget.index,updateBmi);
+                        await addBmi(bmi);
 
                         Navigator.pop(context);
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                            content: Text("Bmi edited"),
+                            content: Text("Bmi Added Successfully"),
                           ),
                         );
                       }

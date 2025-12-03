@@ -1,31 +1,35 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/common/widget/common_button.dart';
-import 'package:medical_reminder/common/widget/custom_text_field.dart';
-import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/view%20report/widget/report_date.dart';
-import 'package:medical_reminder/presentation/view%20report/function/reports_add.dart';
-import 'package:medical_reminder/presentation/view%20report/model/report_model.dart';
-import 'package:medical_reminder/presentation/view%20report/widget/add_report.dart';
+import 'package:medical_reminder/presentation/report/widget/report_date.dart';
+import 'package:medical_reminder/presentation/report/function/reports_add.dart';
+import 'package:medical_reminder/presentation/report/model/report_model.dart';
+import 'package:medical_reminder/presentation/report/widget/add_report.dart';
 
-class AddingViewReport extends StatefulWidget {
-  const AddingViewReport({super.key});
+class EditViewReport extends StatefulWidget {
+  final ReportModel report;
+  final int index;
+
+  const EditViewReport({
+    super.key,
+    required this.report,
+    required this.index,
+  });
 
   @override
-  State<AddingViewReport> createState() => _AddingViewReportState();
+  State<EditViewReport> createState() => _EditViewReportState();
 }
 
-class _AddingViewReportState extends State<AddingViewReport> {
-  final TextEditingController reportDrNameController = TextEditingController();
-  final TextEditingController reportNameController = TextEditingController();
-  final TextEditingController dateController = TextEditingController();
+class _EditViewReportState extends State<EditViewReport> {
+  final reportDrNameController = TextEditingController();
+  final reportNameController = TextEditingController();
+  final dateController = TextEditingController();
   final formKey = GlobalKey<FormState>();
 
   Future<DateTime?> ReportDatePicker(BuildContext context) {
     return showModalBottomSheet<DateTime>(
       context: context,
-      backgroundColor: Colors.white,
-      shape: RoundedRectangleBorder(
+      shape: const RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) {
@@ -35,18 +39,27 @@ class _AddingViewReportState extends State<AddingViewReport> {
   }
 
   @override
+  void initState() {
+    super.initState();
+    reportNameController.text = widget.report.name;
+    dateController.text = widget.report.date;
+    reportDrNameController.text = widget.report.drName;
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.bgColor,
       appBar: AppBar(
         foregroundColor: AppColors.white,
         backgroundColor: AppColors.icon,
-        title: Text(
-          'Add Report',
+        title:  Text(
+          'Edit Report',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
+
       body: Padding(
         padding: const EdgeInsets.all(10.0),
         child: Form(
@@ -62,13 +75,13 @@ class _AddingViewReportState extends State<AddingViewReport> {
                     controller: reportNameController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'name not required';
-                      } else {
-                        return null;
+                        return 'Report name required';
                       }
+                      return null;
                     },
                   ),
-                  SizedBox(height: 20),
+                   SizedBox(height: 20),
+
                   GestureDetector(
                     onTap: () async {
                       DateTime? picked = await ReportDatePicker(context);
@@ -88,53 +101,54 @@ class _AddingViewReportState extends State<AddingViewReport> {
                         controller: dateController,
                         validator: (value) {
                           if (value == null || value.isEmpty) {
-                            return 'date not required';
-                          } else {
-                            return null;
+                            return 'Date is required';
                           }
+                          return null;
                         },
                       ),
                     ),
                   ),
-                  SizedBox(height: 20),
+
+                   SizedBox(height: 20),
+
                   AddContainer(
-                    text: 'Doctor`s Name',
-                    texts: 'name',
+                    text: 'Doctor’s Name',
+                    texts: 'Name',
                     controller: reportDrNameController,
                     validator: (value) {
                       if (value == null || value.isEmpty) {
-                        return 'dr name not required';
-                      } else {
-                        return null;
+                        return 'Doctor name required';
                       }
+                      return null;
                     },
                   ),
                 ],
               ),
+
               Column(
                 children: [
                   CommonButton(
                     text: 'Save Report',
                     onTap: () async {
                       if (formKey.currentState!.validate()) {
-                        final ReportModel report = ReportModel(
+                        final updatedReport = ReportModel(
                           name: reportNameController.text,
-                          drName: reportDrNameController.text,
                           date: dateController.text,
+                          drName: reportDrNameController.text,
                         );
-                        await addReport(report);
+
+                        await editReport(widget.index, updatedReport);
+
                         Navigator.pop(context);
-                        ScaffoldMessenger.of(context).showSnackBar(
-                          SnackBar(
-                            content: Text("Add report"),
-                          ),
+                         ScaffoldMessenger.of(context).showSnackBar(
+                          SnackBar(content: Text("Report edited")),
                         );
-                      } 
+                      }
                     },
                     textColor: AppColors.white,
                     bgColor: AppColors.icon,
                   ),
-                  SizedBox(height: 20),
+                   SizedBox(height: 20),
                 ],
               ),
             ],

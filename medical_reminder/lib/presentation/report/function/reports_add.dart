@@ -2,7 +2,7 @@ import 'dart:developer';
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/adapters.dart';
-import 'package:medical_reminder/presentation/view%20report/model/report_model.dart';
+import 'package:medical_reminder/presentation/report/model/report_model.dart';
 import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
 
 ValueNotifier<List<ReportModel>> reportList = ValueNotifier([]);

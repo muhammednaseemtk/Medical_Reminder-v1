@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/manage%20medicine/function/medicone_add.dart';
-import 'package:medical_reminder/presentation/manage%20medicine/model/medicine_model.dart';
+import 'package:medical_reminder/presentation/medicine/function/medicone_add.dart';
+import 'package:medical_reminder/presentation/medicine/model/medicine_model.dart';
 
 class ManageMedicineScreen extends StatefulWidget {
   const ManageMedicineScreen({super.key});

@@ -1,8 +1,8 @@
 import 'package:hive_flutter/adapters.dart';
-import 'package:medical_reminder/presentation/check%20bmi/model/bmi_model.dart';
+import 'package:medical_reminder/presentation/bmi/model/bmi_model.dart';
 import 'package:medical_reminder/presentation/appointment/model/appointment_model.dart';
-import 'package:medical_reminder/presentation/manage%20medicine/model/medicine_model.dart';
-import 'package:medical_reminder/presentation/view%20report/model/report_model.dart';
+import 'package:medical_reminder/presentation/medicine/model/medicine_model.dart';
+import 'package:medical_reminder/presentation/report/model/report_model.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 
 class UserFunctions {
