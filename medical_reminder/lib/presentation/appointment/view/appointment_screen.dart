@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/appointment/function/appointment_add.dart';
-import 'package:medical_reminder/presentation/edit%20appointment/view/edit_appointment.dart';
+import 'package:medical_reminder/presentation/appointment/view/edit_appointment.dart';
 
 class AppointmentScreen extends StatefulWidget {
   const AppointmentScreen({super.key});

@@ -12,10 +12,10 @@ import 'package:medical_reminder/presentation/view%20report/model/report_model.d
 import 'package:medical_reminder/presentation/view%20report/view/adding_view_report.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 import 'package:medical_reminder/presentation/check bmi/view/check_bmi.dart';
-import 'package:medical_reminder/presentation/edit view report/view/edit_report.dart';
-import 'package:medical_reminder/presentation/edit%20appointment/view/edit_appointment.dart';
-import 'package:medical_reminder/presentation/edit%20bmi/view/edit_bmi.dart';
-import 'package:medical_reminder/presentation/edit%20medicine/view/edit_medicine.dart';
+import 'package:medical_reminder/presentation/view%20report/view/edit_report.dart';
+import 'package:medical_reminder/presentation/appointment/view/edit_appointment.dart';
+import 'package:medical_reminder/presentation/check%20bmi/view/edit_bmi.dart';
+import 'package:medical_reminder/presentation/manage%20medicine/view/edit_medicine.dart';
 import 'package:medical_reminder/presentation/home/view/home_screen.dart';
 import 'package:medical_reminder/presentation/auth/login/view/login_screen.dart';
 import 'package:medical_reminder/presentation/auth/sign_up/view/sign_up_screen.dart';
