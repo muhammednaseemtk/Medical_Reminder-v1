@@ -1,5 +1,7 @@
+import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
+import 'package:medical_reminder/presentation/profile/widget/profile_menu_item.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -48,7 +50,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                       shape: BoxShape.circle,
                     ),
                     child:  Icon(
-                      Icons.edit,
+                      EneftyIcons.edit_2_outline,
                       size: 18,
                       color: AppColors.white,
                     ),
@@ -74,6 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
            SizedBox(height: 25),
+           ProfileMenuItem(icon: EneftyIcons.edit_outline, title: 'Username change', onTap: (){})
         ],
       ),
     );
