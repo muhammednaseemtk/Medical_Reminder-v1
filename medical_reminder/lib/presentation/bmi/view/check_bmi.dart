@@ -25,7 +25,7 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
       appBar: AppBar(
         foregroundColor: AppColors.white,
         backgroundColor: AppColors.icon,
-        title: const Text(
+        title:  Text(
           'BMI',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -40,7 +40,7 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset('asset/image/bmi.jpg', width: 280),
-                  const SizedBox(height: 10),
+                   SizedBox(height: 10),
                   Text(
                     'No BMI data found',
                     style: TextStyle(color: AppColors.lightShade),
@@ -90,7 +90,7 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
                       Row(
                         children: [
                           IconButton(
-                            icon: const Icon(Icons.edit, color: Colors.green),
+                            icon:  Icon(Icons.edit, color: Colors.green),
                             onPressed: () {
                               Navigator.pushNamed(
                                 context,
@@ -100,7 +100,7 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
                             },
                           ),
                           IconButton(
-                            icon: const Icon(
+                            icon:  Icon(
                               Icons.delete,
                               color: AppColors.icon,
                             ),

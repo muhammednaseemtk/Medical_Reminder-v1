@@ -2,6 +2,7 @@ import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
+import 'package:medical_reminder/presentation/profile/view/profile.dart';
 import 'package:medical_reminder/presentation/setting/widget/logout_dailog.dart';
 
 class DrawerScreen extends StatefulWidget {
@@ -32,7 +33,9 @@ class _DrawerScreenState extends State<DrawerScreen> {
               color: AppColors.icon,
             ),
             title: Text('Profile'),
-            onTap: () {},
+            onTap: () {
+              Navigator.pushNamed(context, AppRoute.profile);
+            },
           ),
           ListTile(
             leading: Icon(Icons.info_outline, color: AppColors.icon),

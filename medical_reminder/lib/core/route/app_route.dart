@@ -3,6 +3,8 @@ class AppRoute {
   static const String login = '/login';
   static const String signUp = '/signUp';
   static const String home = '/home';
+  static const String drawer = '/drawer';
+  static const String profile = '/profile';
   static const String viewReport = '/viewReport';
   static const String addingViewReport = '/addingViewReport';
   static const String editViewReport = '/editViewReport';
@@ -17,6 +19,5 @@ class AppRoute {
   static const String editBmi = '/editBmi';
   static const String statistics = '/statistics';
   static const String setting = '/setting';
-  static const String drawer = '/drawer';
   static const String mainPage = '/mainPage';
 }

@@ -9,6 +9,7 @@ import 'package:medical_reminder/presentation/bmi/view/adding_bmi.dart';
 import 'package:medical_reminder/presentation/medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/medicine/view/adding_medicine.dart';
 import 'package:medical_reminder/presentation/home/widget/drawer.dart';
+import 'package:medical_reminder/presentation/profile/view/profile.dart';
 import 'package:medical_reminder/presentation/report/model/report_model.dart';
 import 'package:medical_reminder/presentation/report/view/adding_view_report.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
@@ -89,6 +90,7 @@ class MyApp extends StatelessWidget {
         AppRoute.statistics: (context) => StatisticsScreen(),
         AppRoute.setting: (context) => SettingScreen(),
         AppRoute.drawer: (context) => DrawerScreen(),
+        AppRoute.profile: (context) => ProfileScreen(),
         AppRoute.mainPage: (context) => MainPage(),
       },
     );
