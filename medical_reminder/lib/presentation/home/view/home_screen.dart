@@ -1,13 +1,11 @@
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
-
 import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-
 import 'package:medical_reminder/presentation/home/widget/appointment_card.dart';
 import 'package:medical_reminder/presentation/home/widget/medicine_card.dart';
 import 'package:medical_reminder/presentation/home/widget/menu_card.dart';
-import 'package:medical_reminder/presentation/profile/view/profile.dart'; 
+import 'package:medical_reminder/presentation/Drawer/view/drawer.dart'; 
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,8 +18,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
-      drawer:  Profile(),
-
+      drawer:  DrawerScreen(),
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,

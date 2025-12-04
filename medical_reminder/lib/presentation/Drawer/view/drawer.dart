@@ -2,14 +2,14 @@ import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 
-class Profile extends StatefulWidget {
-  const Profile({super.key});
+class DrawerScreen extends StatefulWidget {
+  const DrawerScreen({super.key});
 
   @override
-  State<Profile> createState() => _ProfileState();
+  State<DrawerScreen> createState() => _DrawerScreenState();
 }
 
-class _ProfileState extends State<Profile> {
+class _DrawerScreenState extends State<DrawerScreen> {
   @override
   Widget build(BuildContext context) {
     return Drawer(

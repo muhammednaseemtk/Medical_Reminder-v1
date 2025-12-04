@@ -17,6 +17,6 @@ class AppRoute {
   static const String editBmi = '/editBmi';
   static const String statistics = '/statistics';
   static const String setting = '/setting';
-  static const String profile = '/profile';
+  static const String drawer = '/drawer';
   static const String mainPage = '/mainPage';
 }
