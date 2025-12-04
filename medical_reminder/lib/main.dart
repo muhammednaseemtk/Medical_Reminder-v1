@@ -8,7 +8,7 @@ import 'package:medical_reminder/presentation/bmi/model/bmi_model.dart';
 import 'package:medical_reminder/presentation/bmi/view/adding_bmi.dart';
 import 'package:medical_reminder/presentation/medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/medicine/view/adding_medicine.dart';
-import 'package:medical_reminder/presentation/Drawer/view/drawer.dart';
+import 'package:medical_reminder/presentation/home/widget/drawer.dart';
 import 'package:medical_reminder/presentation/report/model/report_model.dart';
 import 'package:medical_reminder/presentation/report/view/adding_view_report.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';

@@ -5,7 +5,7 @@ import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/home/widget/appointment_card.dart';
 import 'package:medical_reminder/presentation/home/widget/medicine_card.dart';
 import 'package:medical_reminder/presentation/home/widget/menu_card.dart';
-import 'package:medical_reminder/presentation/Drawer/view/drawer.dart'; 
+import 'package:medical_reminder/presentation/home/widget/drawer.dart'; 
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

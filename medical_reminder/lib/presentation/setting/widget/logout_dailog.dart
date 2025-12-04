@@ -37,7 +37,7 @@ class LogoutDialog extends StatelessWidget {
           },
           child: Text(
             'Logout',
-            style: TextStyle(color: AppColors.txtColor),
+            style: TextStyle(color: AppColors.icon2),
           ),
         ),
       ],

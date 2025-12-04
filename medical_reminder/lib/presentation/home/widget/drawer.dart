@@ -1,6 +1,8 @@
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
+import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
+import 'package:medical_reminder/presentation/setting/widget/logout_dailog.dart';
 
 class DrawerScreen extends StatefulWidget {
   const DrawerScreen({super.key});
@@ -17,9 +19,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
       child: Column(
         children: [
           UserAccountsDrawerHeader(
-            decoration: BoxDecoration(
-              color: AppColors.icon
-            ),
+            decoration: BoxDecoration(color: AppColors.icon),
             accountName: Text("Muhammed Naseem"),
             accountEmail: Text("naseem@gmail.com"),
             currentAccountPicture: CircleAvatar(
@@ -27,25 +27,33 @@ class _DrawerScreenState extends State<DrawerScreen> {
             ),
           ),
           ListTile(
-            leading: Icon(EneftyIcons.profile_circle_outline,color: AppColors.icon,),
+            leading: Icon(
+              EneftyIcons.profile_circle_outline,
+              color: AppColors.icon,
+            ),
             title: Text('Profile'),
-            onTap: (){},
-          ),
-          ListTile(
-            leading: Icon(Icons.info_outline,color: AppColors.icon,),
-            title: Text('About'),
-            onTap: (){},
-          ),
-          ListTile(
-            leading: Icon(Icons.policy_outlined,color: AppColors.icon,),
-            title: Text('Privacy Policy'),
-            onTap: (){},
-          ),
-          ListTile(
-            leading: Icon(EneftyIcons.logout_outline,color: AppColors.icon,),
-            title: Text("Logout"),
             onTap: () {},
-          )
+          ),
+          ListTile(
+            leading: Icon(Icons.info_outline, color: AppColors.icon),
+            title: Text('About'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(Icons.policy_outlined, color: AppColors.icon),
+            title: Text('Privacy Policy'),
+            onTap: () {},
+          ),
+          ListTile(
+            leading: Icon(EneftyIcons.logout_outline, color: AppColors.icon),
+            title: Text("Logout"),
+            onTap: () {
+             showDialog(
+                context: context,
+                builder: (context) => const LogoutDialog(),
+              );
+            },
+          ),
         ],
       ),
     );
