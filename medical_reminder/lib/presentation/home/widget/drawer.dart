@@ -21,7 +21,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
         children: [
           UserAccountsDrawerHeader(
             decoration: BoxDecoration(color: AppColors.icon),
-            accountName: Text("Muhammed Naseem"),
+            accountName: Text("Muhammed Naseem T K"),
             accountEmail: Text("naseem@gmail.com"),
             currentAccountPicture: CircleAvatar(
               backgroundImage: AssetImage('asset/image/profile.png'),

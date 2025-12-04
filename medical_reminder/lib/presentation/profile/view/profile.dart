@@ -61,7 +61,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
            SizedBox(height: 15),
            Text(
-            "John Doe",
+            "Muhammed Naseem T K",
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w600,
@@ -69,7 +69,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
           ),
            SizedBox(height: 5),
           Text(
-            "john.doe@example.com",
+            "naseem@gmail.com",
             style: TextStyle(
               fontSize: 14,
               color: AppColors.lightShade,
