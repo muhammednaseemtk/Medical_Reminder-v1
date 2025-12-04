@@ -5,9 +5,9 @@ import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 
 import 'package:medical_reminder/presentation/home/widget/appointment_card.dart';
-
 import 'package:medical_reminder/presentation/home/widget/medicine_card.dart';
 import 'package:medical_reminder/presentation/home/widget/menu_card.dart';
+import 'package:medical_reminder/presentation/profile/view/profile.dart'; 
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -20,24 +20,35 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
+      drawer:  Profile(),
+
       body: SingleChildScrollView(
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20,vertical: 15),
-              child: Row(
-                children: [
-                  CircleAvatar(
-                    backgroundImage: AssetImage('asset/image/profile.png'),
+            Builder(
+              builder: (context) {
+                return Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
+                  child: Row(
+                    children: [
+                      GestureDetector(
+                        onTap: () {
+                          Scaffold.of(context).openDrawer();
+                        },
+                        child: CircleAvatar(
+                          backgroundImage: AssetImage('asset/image/profile.png'),
+                        ),
+                      ),
+                      SizedBox(width: 10),
+                      Text(
+                        'Muhammed Naseem T K ',
+                        style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
+                      ),
+                    ],
                   ),
-                  SizedBox(width: 10),
-                  Text(
-                    'Muhammed Naseem T K ',
-                    style: TextStyle(fontSize: 15, fontWeight: FontWeight.w500),
-                  ),
-                ],
-              ),
+                );
+              },
             ),
             Padding(
               padding: const EdgeInsets.all(8.0),

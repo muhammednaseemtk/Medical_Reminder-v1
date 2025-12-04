@@ -40,29 +40,6 @@ class _SettingScreenState extends State<SettingScreen> {
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 11),
                 child: Text(
-                  'ACCOUNT SETTINGS',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-              ),
-              SettingsItems(
-                icon: EneftyIcons.profile_outline,
-                title: 'Update Profile',
-                onTap: () {},
-              ),
-              SettingsItems(
-                icon: EneftyIcons.lock_2_outline,
-                title: 'Change Password',
-                onTap: () {},
-              ),
-              SettingsItems(
-                icon: Icons.mail_outline,
-                title: 'Manage Email Address',
-                onTap: () {},
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 11),
-                child: Text(
                   'NOTIFICATIONS',
                   style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                 ),
@@ -117,44 +94,6 @@ class _SettingScreenState extends State<SettingScreen> {
                 icon: Icons.bug_report_outlined,
                 title: 'Report a Bug',
                 onTap: () {},
-              ),
-              SizedBox(height: 10),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 11),
-                child: Text(
-                  'ABOUT',
-                  style: TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
-                ),
-              ),
-              SettingsItems(
-                icon: Icons.info_outline,
-                title: 'About MediReminder',
-                onTap: () {},
-              ),
-              SettingsItems(
-                icon: Icons.policy_outlined,
-                title: 'Privacy Policy',
-                onTap: () {},
-              ),
-              SettingsItems(
-                icon: Icons.gavel_outlined,
-                title: 'Terms of Service',
-                onTap: () {},
-              ),
-              SizedBox(height: 18),
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 38),
-                child: CommonButton(
-                  text: 'Log Out',
-                  onTap: () {
-                    showDialog(
-                      context: context,
-                      builder: (context) => const LogoutDialog(),
-                    );
-                  },
-                  textColor: AppColors.white,
-                  bgColor: AppColors.btnColor,
-                ),
               ),
             ],
           ),

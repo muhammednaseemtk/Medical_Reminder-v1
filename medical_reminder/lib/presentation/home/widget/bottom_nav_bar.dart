@@ -9,25 +9,28 @@ class BottomNavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return  BottomNavigationBar(
+    return BottomNavigationBar(
       backgroundColor: AppColors.white,
-        currentIndex: index,
-        type: BottomNavigationBarType.fixed,
-        selectedItemColor: AppColors.icon,
-        unselectedItemColor: AppColors.txtColor,
-        onTap: onTap,
-        items: const [
-          BottomNavigationBarItem(
-            icon: Icon(EneftyIcons.house_outline),
-            label: 'Home',
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(EneftyIcons.chart_4_outline),
-            label: 'Statistics',
-          ),
+      currentIndex: index,
+      type: BottomNavigationBarType.fixed,
+      selectedItemColor: AppColors.icon,
+      unselectedItemColor: AppColors.txtColor,
+      onTap: onTap,
+      items: const [
+        BottomNavigationBarItem(
+          icon: Icon(EneftyIcons.house_outline),
+          label: 'Home',
+        ),
+        BottomNavigationBarItem(
+          icon: Icon(EneftyIcons.chart_4_outline),
+          label: 'Statistics',
+        ),
 
-          BottomNavigationBarItem(icon: Icon(EneftyIcons.setting_outline), label: 'Settings'),
-        ],
-      );
+        BottomNavigationBarItem(
+          icon: Icon(EneftyIcons.setting_outline),
+          label: 'Settings',
+        ),
+      ],
+    );
   }
 }
