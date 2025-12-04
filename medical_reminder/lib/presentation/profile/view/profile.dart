@@ -1,5 +1,7 @@
-import 'package:enefty_icons/enefty_icons.dart';
+import 'dart:io';
 import 'package:flutter/material.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:enefty_icons/enefty_icons.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/presentation/profile/widget/profile_menu_item.dart';
 
@@ -11,6 +13,19 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
+  File? image; 
+
+  pickImage() async {
+    final XFile? photo =
+        await ImagePicker().pickImage(source: ImageSource.gallery);
+
+    if (photo == null) return;
+
+    setState(() {
+      image = File(photo.path);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -25,34 +40,30 @@ class _ProfileScreenState extends State<ProfileScreen> {
       ),
       body: Column(
         children: [
-           SizedBox(height: 30),
+          SizedBox(height: 30),
           Center(
             child: Stack(
               children: [
-                Container(
-                  width: 110,
-                  height: 110,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    image:  DecorationImage(
-                      image: AssetImage('asset/image/profile.png'),
-                      fit: BoxFit.cover,
-                    ),
-                  ),
+                CircleAvatar(
+                  radius: 55,
+                  backgroundImage: image != null
+                      ? FileImage(image!)
+                      :  AssetImage('asset/image/profile.png')
+                          as ImageProvider,
                 ),
                 Positioned(
-                  bottom: 4,
-                  right: 4,
-                  child: Container(
-                    padding: const EdgeInsets.all(5),
-                    decoration:  BoxDecoration(
-                      color: AppColors.icon,
-                      shape: BoxShape.circle,
-                    ),
-                    child:  Icon(
-                      EneftyIcons.edit_2_outline,
-                      size: 18,
-                      color: AppColors.white,
+                  bottom: 0,
+                  right: 0,
+                  child: InkWell(
+                    onTap: pickImage,
+                    child: CircleAvatar(
+                      radius: 18,
+                      backgroundColor: AppColors.icon,
+                      child:  Icon(
+                        EneftyIcons.edit_2_outline,
+                        size: 16,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
@@ -76,7 +87,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
             ),
           ),
            SizedBox(height: 25),
-           ProfileMenuItem(icon: EneftyIcons.edit_outline, title: 'Username change', onTap: (){})
+          ProfileMenuItem(
+            icon: EneftyIcons.edit_outline,
+            title: 'Username change',
+            onTap: () {},
+          ),
+          ProfileMenuItem(
+            icon: Icons.privacy_tip_outlined,
+            title: 'Privacy',
+            onTap: () {},
+          ),
         ],
       ),
     );
