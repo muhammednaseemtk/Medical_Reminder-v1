@@ -40,7 +40,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     : CircleAvatar(
                         backgroundColor: Colors.white,
                         child: Icon(
-                          EneftyIcons.profile_circle_outline,
+                          EneftyIcons.profile_outline,
                           size: 42,
                           color: AppColors.icon,
                         ),
