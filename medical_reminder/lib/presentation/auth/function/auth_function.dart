@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:hive_flutter/hive_flutter.dart';
 import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 import 'package:medical_reminder/presentation/profile/function/profile_function.dart';
@@ -6,6 +8,7 @@ import 'package:medical_reminder/presentation/bmi/model/bmi_model.dart';
 import 'package:medical_reminder/presentation/appointment/model/appointment_model.dart';
 import 'package:medical_reminder/presentation/medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/report/model/report_model.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class UserFunctions {
   final Box<UserModel> userBox = Hive.box<UserModel>('users');
@@ -15,7 +18,7 @@ class UserFunctions {
   Future<bool> addUser(UserModel user) async {
     await userBox.put(user.email, user);
 
-    // Create profile
+    
     final profileBox = await Hive.openBox<ProfileModel>('${user.email}_profile');
 
     final profile = ProfileModel(
@@ -25,7 +28,7 @@ class UserFunctions {
     );
 
     await profileBox.put('profile', profile);
-    currentProfile.value = profile; // global update
+    currentProfile.value = profile;
 
     return true;
   }
@@ -37,6 +40,7 @@ class UserFunctions {
     if (user!.password != password) return false;
 
     loggedInUserEmail = email;
+    log('email $loggedInUserEmail');
 
     await Hive.openBox<MedicineModel>('${email}_medicines');
     await Hive.openBox<ReportModel>('${email}_reports');
@@ -45,7 +49,29 @@ class UserFunctions {
 
     final profileBox = await Hive.openBox<ProfileModel>('${email}_profile');
     currentProfile.value = profileBox.get('profile');
+    final prefer = await SharedPreferences.getInstance();
+    prefer.setBool('isLoggin', true);
+    prefer.setString('userEmail', email);
 
     return true;
+  }
+
+  Future<bool>checkUserLogined()async{
+    final prefer = await SharedPreferences.getInstance();
+    final isloggin = prefer.getBool('isLoggin');
+    final email = prefer.getString('userEmail');
+
+    if(isloggin == true && email != null){
+    await Hive.openBox<MedicineModel>('${email}_medicines');
+    await Hive.openBox<ReportModel>('${email}_reports');
+    await Hive.openBox<AppointmentModel>('${email}_appointments');
+    await Hive.openBox<BmiModel>('${email}_bmis');
+
+    final profileBox = await Hive.openBox<ProfileModel>('${email}_profile');
+    currentProfile.value = profileBox.get('profile');
+    return true;
+    }
+    
+    return false;
   }
 }

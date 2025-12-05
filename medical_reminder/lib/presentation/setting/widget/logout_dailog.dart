@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/core/route/app_route.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 
 class LogoutDialog extends StatelessWidget {
   const LogoutDialog({super.key});
@@ -31,7 +32,9 @@ class LogoutDialog extends StatelessWidget {
           ),
         ),
         TextButton(
-          onPressed: () {
+          onPressed: () async{
+            final prefer = await SharedPreferences.getInstance();
+            prefer.setBool('isLoggin', false);
             Navigator.pop(context);  
             Navigator.pushReplacementNamed(context, AppRoute.login);
           },
