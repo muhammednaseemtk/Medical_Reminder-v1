@@ -24,7 +24,7 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
       appBar: AppBar(
         foregroundColor: AppColors.white,
         backgroundColor: AppColors.icon,
-        title: const Text(
+        title:  Text(
           'View Report',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
@@ -40,7 +40,7 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset('asset/image/report.jpg', width: 280),
-                  const Text('No Medical Report Found!'),
+                   Text('No Medical Report Found!'),
                   Text(
                     'Please add your first report to get started.',
                     style: TextStyle(color: AppColors.lightShade),
@@ -49,7 +49,6 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
               ),
             );
           }
-
           return ListView.builder(
             padding: const EdgeInsets.all(10),
             itemCount: list.length,
@@ -61,7 +60,6 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
                 child: ListTile(
                   title: Text(report.name,style: TextStyle(fontSize: 16,fontWeight: FontWeight.w500),),
                   subtitle: Text("Date: ${report.date}\nDr: ${report.drName}"),
-
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -78,7 +76,6 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
                           );
                         },
                       ),
-
                       IconButton(
                         icon: Icon(Icons.delete, color: AppColors.icon),
                         onPressed: () => Report().deleteReport(index),
@@ -91,7 +88,6 @@ class _ViewReportScreenState extends State<ViewReportScreen> {
           );
         },
       ),
-
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
         child: FloatingActionButton(

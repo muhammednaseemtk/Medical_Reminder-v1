@@ -72,22 +72,20 @@ void setupListeners() async {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
-        title: const Text(
+        title:  Text(
           'Statistics',
           style: TextStyle(fontWeight: FontWeight.w500, fontSize: 25),
         ),
         centerTitle: true,
         bottom: PreferredSize(
-          preferredSize: const Size.fromHeight(1),
+          preferredSize:  Size.fromHeight(1),
           child: Container(color: AppColors.shadow, height: 1),
         ),
       ),
       body: SingleChildScrollView(
         child: Column(
           children: [
-            const SizedBox(height: 20),
-
-            // Pie Chart
+             SizedBox(height: 20),
             if (total == 0)
               const Padding(
                 padding: EdgeInsets.only(top: 100),
@@ -103,65 +101,60 @@ void setupListeners() async {
                     centerSpaceRadius: 40,
                     sections: [
                       PieChartSectionData(
-                        color: Colors.blue,
+                        color: AppColors.icon1,
                         value: appointmentCount.toDouble(),
                         title: "Appointments\n$appointmentCount",
                         radius: 90,
-                        titleStyle: const TextStyle(
+                        titleStyle:  TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: AppColors.white),
                       ),
                       PieChartSectionData(
-                        color: Colors.green,
+                        color: AppColors.icon,
                         value: bmiCount.toDouble(),
                         title: "BMI\n$bmiCount",
                         radius: 90,
-                        titleStyle: const TextStyle(
+                        titleStyle:  TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: AppColors.white),
                       ),
                       PieChartSectionData(
-                        color: Colors.orange,
+                        color: AppColors.icon3,
                         value: medicineCount.toDouble(),
                         title: "Medicine\n$medicineCount",
                         radius: 90,
-                        titleStyle: const TextStyle(
+                        titleStyle:  TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: AppColors.white),
                       ),
                       PieChartSectionData(
-                        color: Colors.red,
+                        color: AppColors.icon2,
                         value: reportCount.toDouble(),
                         title: "Reports\n$reportCount",
                         radius: 90,
-                        titleStyle: const TextStyle(
+                        titleStyle:  TextStyle(
                             fontSize: 13,
                             fontWeight: FontWeight.bold,
-                            color: Colors.white),
+                            color: AppColors.white),
                       ),
                     ],
                   ),
                 ),
               ),
-
-            const SizedBox(height: 20),
-
-            // Info List
-            infoTile("Total Appointments", appointmentCount, Colors.blue),
-            infoTile("BMI Records", bmiCount, Colors.green),
-            infoTile("Medicines", medicineCount, Colors.orange),
-            infoTile("Reports", reportCount, Colors.red),
-
-            const SizedBox(height: 30),
+             SizedBox(height: 20),
+            infoTile("Total Appointments", appointmentCount, AppColors.icon1),
+            infoTile("BMI Records", bmiCount, AppColors.icon),
+            infoTile("Medicines", medicineCount, AppColors.icon3),
+            infoTile("Reports", reportCount, AppColors.icon2),
+             SizedBox(height: 30),
           ],
         ),
       ),
     );
   }
-
   Widget infoTile(String title, int count, Color color) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 6),
@@ -173,9 +166,9 @@ void setupListeners() async {
             decoration:
                 BoxDecoration(shape: BoxShape.circle, color: color),
           ),
-          const SizedBox(width: 10),
+           SizedBox(width: 10),
           Text("$title: $count",
-              style: const TextStyle(fontSize: 17)),
+              style:  TextStyle(fontSize: 17)),
         ],
       ),
     );

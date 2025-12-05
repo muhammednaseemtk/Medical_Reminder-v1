@@ -70,7 +70,6 @@ class _AddingMedicineState extends State<AddingMedicine> {
                     }
                   ),
                   SizedBox(height: 15),
-
                   AddContainer(
                     text: 'Dosage',
                     texts: 'text',

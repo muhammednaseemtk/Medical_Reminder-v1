@@ -9,6 +9,7 @@ import 'package:medical_reminder/presentation/bmi/view/adding_bmi.dart';
 import 'package:medical_reminder/presentation/medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/medicine/view/adding_medicine.dart';
 import 'package:medical_reminder/presentation/home/widget/drawer.dart';
+import 'package:medical_reminder/presentation/profile/model/profile_model.dart';
 import 'package:medical_reminder/presentation/profile/view/profile.dart';
 import 'package:medical_reminder/presentation/report/model/report_model.dart';
 import 'package:medical_reminder/presentation/report/view/adding_view_report.dart';
@@ -37,6 +38,7 @@ void main() async {
   Hive.registerAdapter(ReportModelAdapter());
   Hive.registerAdapter(AppointmentModelAdapter());
   Hive.registerAdapter(BmiModelAdapter());
+  Hive.registerAdapter(ProfileModelAdapter());
 
   await Hive.openBox<UserModel>('users');
   runApp(MyApp());
@@ -49,7 +51,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      initialRoute: AppRoute.mainPage,
+      initialRoute: AppRoute.splash,
 
       routes: {
         AppRoute.splash: (context) => const SplashScreen(),

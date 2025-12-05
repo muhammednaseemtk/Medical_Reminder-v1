@@ -29,7 +29,7 @@ class _EditViewReportState extends State<EditViewReport> {
   Future<DateTime?> ReportDatePicker(BuildContext context) {
     return showModalBottomSheet<DateTime>(
       context: context,
-      shape: const RoundedRectangleBorder(
+      shape:  RoundedRectangleBorder(
         borderRadius: BorderRadius.vertical(top: Radius.circular(20)),
       ),
       builder: (context) {
@@ -81,7 +81,6 @@ class _EditViewReportState extends State<EditViewReport> {
                     },
                   ),
                    SizedBox(height: 20),
-
                   GestureDetector(
                     onTap: () async {
                       DateTime? picked = await ReportDatePicker(context);
@@ -108,9 +107,7 @@ class _EditViewReportState extends State<EditViewReport> {
                       ),
                     ),
                   ),
-
                    SizedBox(height: 20),
-
                   AddContainer(
                     text: 'Doctor’s Name',
                     texts: 'Name',
@@ -124,7 +121,6 @@ class _EditViewReportState extends State<EditViewReport> {
                   ),
                 ],
               ),
-
               Column(
                 children: [
                   CommonButton(
@@ -136,9 +132,7 @@ class _EditViewReportState extends State<EditViewReport> {
                           date: dateController.text,
                           drName: reportDrNameController.text,
                         );
-
                         await Report().editReport(widget.index, updatedReport);
-
                         Navigator.pop(context);
                          ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text("Report edited")),

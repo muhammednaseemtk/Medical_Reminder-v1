@@ -79,7 +79,6 @@ class _EditMedicineState extends State<EditMedicine> {
                     },
                   ),
                   SizedBox(height: 15),
-
                   AddContainer(
                     text: 'Dosage',
                     texts: 'text',

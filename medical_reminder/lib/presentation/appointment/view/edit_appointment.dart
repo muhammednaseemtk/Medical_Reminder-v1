@@ -82,13 +82,10 @@ class _EditAppointmentState extends State<EditAppointment> {
                       return null;
                     },
                   ),
-
                   SizedBox(height: 20),
-
                   GestureDetector(
                     onTap: () async {
                       DateTime? picked = await AppointmentDatePicker(context);
-
                       if (picked != null) {
                         setState(() {
                           dateController.text =
@@ -112,9 +109,7 @@ class _EditAppointmentState extends State<EditAppointment> {
                       ),
                     ),
                   ),
-
                   SizedBox(height: 20),
-
                   AddContainer(
                     text: 'Doctor Name',
                     texts: 'Enter name',
@@ -128,7 +123,6 @@ class _EditAppointmentState extends State<EditAppointment> {
                   ),
                 ],
               ),
-
               Column(
                 children: [
                   CommonButton(
@@ -140,9 +134,7 @@ class _EditAppointmentState extends State<EditAppointment> {
                           name: nameController.text.trim(),
                           date: dateController.text.trim(),
                         );
-
                         await editAppointment(widget.index, updatedAppointment);
-
                         Navigator.pop(context);
                          ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(content: Text("Appointment edited")),
@@ -152,7 +144,6 @@ class _EditAppointmentState extends State<EditAppointment> {
                     textColor: AppColors.white,
                     bgColor: AppColors.icon,
                   ),
-
                   SizedBox(height: 20),
                 ],
               ),

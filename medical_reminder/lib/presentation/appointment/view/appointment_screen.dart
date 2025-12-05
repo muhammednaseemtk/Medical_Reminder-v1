@@ -31,7 +31,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
         ),
         centerTitle: true,
       ),
-
       body: ValueListenableBuilder(
         valueListenable: appointmentList,
         builder: (context, list, child) {
@@ -52,7 +51,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
               ),
             );
           }
-
           return ListView.separated(
             padding: const EdgeInsets.all(15),
             separatorBuilder: (_, __) => const SizedBox(height: 10),
@@ -60,28 +58,23 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
             itemBuilder: (context, i) {
               final index = list.length - 1 - i;
               final data = list[index];
-
               return Card(
                 color: AppColors.white,
                 shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(12),
                 ),
                 elevation: 1.5,
-
                 child: ListTile(
                   contentPadding:
                       const EdgeInsets.symmetric(vertical: 10, horizontal: 15),
-
                   title: Text(
                     data.title,
-                    style: const TextStyle(
+                    style:  TextStyle(
                         fontSize: 16,fontWeight: FontWeight.w500),
                   ),
-
                   subtitle: Text(
                     "Doctor: ${data.name}\nDate: ${data.date}",
                   ),
-
                   trailing: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
@@ -104,7 +97,7 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
                         onPressed: () {
                           deleteAppointment(index);
                           ScaffoldMessenger.of(context).showSnackBar(
-                            const SnackBar(
+                             SnackBar(
                                 content: Text("Appointment deleted")),
                           );
                         },
@@ -117,7 +110,6 @@ class _AppointmentScreenState extends State<AppointmentScreen> {
           );
         },
       ),
-
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 25, vertical: 25),
         child: FloatingActionButton(

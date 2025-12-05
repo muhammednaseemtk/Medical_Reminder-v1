@@ -25,13 +25,12 @@ class _ManageMedicineScreenState extends State<ManageMedicineScreen> {
       appBar: AppBar(
         foregroundColor: AppColors.white,
         backgroundColor: AppColors.icon,
-        title: const Text(
+        title:  Text(
           'Manage Medicine',
           style: TextStyle(fontWeight: FontWeight.bold),
         ),
         centerTitle: true,
       ),
-
       body: ValueListenableBuilder<List<MedicineModel>>(
         valueListenable: medicineList,
         builder: (context, list, _) {
@@ -41,12 +40,12 @@ class _ManageMedicineScreenState extends State<ManageMedicineScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Image.asset('asset/image/medicine.jpg', width: 280),
-                  const SizedBox(height: 10),
-                  const Text(
+                   SizedBox(height: 10),
+                   Text(
                     'No Medicine Reminder Found!',
                     style: TextStyle(fontWeight: FontWeight.w500),
                   ),
-                  const SizedBox(height: 5),
+                   SizedBox(height: 5),
                   Text(
                     'Please add your first medicine reminder.',
                     style: TextStyle(color: AppColors.lightShade),
@@ -68,7 +67,7 @@ class _ManageMedicineScreenState extends State<ManageMedicineScreen> {
                 child: ListTile(
                   title: Text(
                     item.name,
-                    style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
+                    style:  TextStyle(fontSize: 16, fontWeight: FontWeight.w500),
                   ),
                   subtitle: Text(
                     "Dosage: ${item.dosage}\n"
@@ -110,7 +109,7 @@ class _ManageMedicineScreenState extends State<ManageMedicineScreen> {
             Navigator.pushNamed(context, AppRoute.addingMedicine);
           },
           backgroundColor: AppColors.icon,
-          child: const Icon(Icons.add, color: AppColors.white),
+          child:  Icon(Icons.add, color: AppColors.white),
         ),
       ),
     );

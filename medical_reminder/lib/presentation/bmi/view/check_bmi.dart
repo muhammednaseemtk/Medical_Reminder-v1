@@ -57,7 +57,6 @@ class _CheckBmiScreenState extends State<CheckBmiScreen> {
             itemBuilder: (context, i) {
               final index = list.length - 1 - i;
               final bmi = list[index];
-
               return Card(
                 color: AppColors.white,
                 shape: RoundedRectangleBorder(

@@ -41,7 +41,6 @@ class ReportDate extends StatelessWidget {
             ),
           ),
           SizedBox(height: 10),
-
           ElevatedButton(
             style: ElevatedButton.styleFrom(
               backgroundColor: AppColors.icon,

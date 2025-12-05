@@ -1,9 +1,13 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
 import 'package:enefty_icons/enefty_icons.dart';
+import 'package:image_picker/image_picker.dart';
+import 'package:path_provider/path_provider.dart';
+import 'package:medical_reminder/common/widget/common_button.dart';
+import 'package:medical_reminder/presentation/profile/widget/edit_name.dart';
+import 'package:medical_reminder/presentation/profile/model/profile_model.dart';
+import 'package:medical_reminder/presentation/profile/function/profile_function.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
-import 'package:medical_reminder/presentation/profile/widget/profile_menu_item.dart';
 
 class ProfileScreen extends StatefulWidget {
   const ProfileScreen({super.key});
@@ -13,17 +17,70 @@ class ProfileScreen extends StatefulWidget {
 }
 
 class _ProfileScreenState extends State<ProfileScreen> {
-  File? image; 
+  File? _imageFile;
 
-  pickImage() async {
-    final XFile? photo =
-        await ImagePicker().pickImage(source: ImageSource.gallery);
+  @override
+  void initState() {
+    super.initState();
+    loadProfile();
+  }
 
-    if (photo == null) return;
+  Future<void> _pickImage() async {
+    try {
+      final picker = ImagePicker();
+      final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
-    setState(() {
-      image = File(photo.path);
-    });
+      if (image == null) return;
+
+      final directory = await getApplicationDocumentsDirectory();
+      final newPath = '${directory.path}/${image.name}';
+      final File newImage = await File(image.path).copy(newPath);
+
+      setState(() => _imageFile = newImage);
+    } catch (e) {
+      print("Image pick error: $e");
+    }
+  }
+
+  void _editName(String currentName) {
+    showDialog(
+      context: context,
+      builder: (context) => EditNameDialog(
+        currentName: currentName,
+        onSave: (newName) {
+          final profile = currentProfile.value;
+          if (profile == null) return;
+
+          final updated = ProfileModel(
+            username: newName,
+            email: profile.email,
+            imagePath: profile.imagePath,
+          );
+
+          saveProfile(updated);
+        },
+      ),
+    );
+  }
+
+  Future<void> _saveProfile() async {
+    final profile = currentProfile.value;
+    if (profile == null) return;
+
+    final updatedProfile = ProfileModel(
+      username: profile.username,
+      email: profile.email,
+      imagePath: _imageFile?.path ?? profile.imagePath,
+    );
+
+    await saveProfile(updatedProfile);
+
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        content: Text("Profile Updated Successfully"),
+        backgroundColor: AppColors.icon,
+      ),
+    );
   }
 
   @override
@@ -32,72 +89,110 @@ class _ProfileScreenState extends State<ProfileScreen> {
       backgroundColor: AppColors.white,
       appBar: AppBar(
         backgroundColor: AppColors.white,
-        title:  Text(
-          'Profile',
-          style: TextStyle(fontWeight: FontWeight.w500),
-        ),
+        elevation: 0,
         centerTitle: true,
+        title: Text("Profile", style: TextStyle(fontWeight: FontWeight.w600)),
       ),
-      body: Column(
-        children: [
-          SizedBox(height: 30),
-          Center(
-            child: Stack(
-              children: [
-                CircleAvatar(
-                  radius: 55,
-                  backgroundImage: image != null
-                      ? FileImage(image!)
-                      :  AssetImage('asset/image/profile.png')
-                          as ImageProvider,
-                ),
-                Positioned(
-                  bottom: 0,
-                  right: 0,
-                  child: InkWell(
-                    onTap: pickImage,
-                    child: CircleAvatar(
-                      radius: 18,
-                      backgroundColor: AppColors.icon,
-                      child:  Icon(
-                        EneftyIcons.edit_2_outline,
-                        size: 16,
-                        color: Colors.white,
+
+      body: ValueListenableBuilder(
+        valueListenable: currentProfile,
+        builder: (context, profile, _) {
+          if (profile == null) {
+            return Center(child: CircularProgressIndicator());
+          }
+
+          final username = profile.username;
+          final email = profile.email;
+          final imagePath = _imageFile?.path ?? profile.imagePath;
+
+          return Column(
+            children: [
+              SizedBox(height: 30),
+
+              /// Profile Image Section
+              Center(
+                child: Stack(
+                  children: [
+                    Container(
+                      width: 110,
+                      height: 110,
+                      decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: AppColors.bgBtnColor,
+                      ),
+                      child: imagePath != null
+                          ? ClipOval(
+                              child: Image.file(
+                                File(imagePath),
+                                width: 110,
+                                height: 110,
+                                fit: BoxFit.cover,
+                              ),
+                            )
+                          : Icon(EneftyIcons.profile_outline,
+                              size: 50, color: AppColors.icon),
+                    ),
+                    Positioned(
+                      bottom: 4,
+                      right: 4,
+                      child: GestureDetector(
+                        onTap: _pickImage,
+                        child: Container(
+                          padding: EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: AppColors.icon,
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(EneftyIcons.edit_2_outline,
+                              size: 18, color: AppColors.white),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ],
-            ),
-          ),
-           SizedBox(height: 15),
-           Text(
-            "Muhammed Naseem T K",
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w600,
-            ),
-          ),
-           SizedBox(height: 5),
-          Text(
-            "naseem@gmail.com",
-            style: TextStyle(
-              fontSize: 14,
-              color: AppColors.lightShade,
-            ),
-          ),
-           SizedBox(height: 25),
-          ProfileMenuItem(
-            icon: EneftyIcons.edit_outline,
-            title: 'Username change',
-            onTap: () {},
-          ),
-          ProfileMenuItem(
-            icon: Icons.privacy_tip_outlined,
-            title: 'Privacy',
-            onTap: () {},
-          ),
-        ],
+              ),
+
+              SizedBox(height: 15),
+
+              /// Username
+              Text(
+                username,
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
+              ),
+
+              SizedBox(height: 5),
+
+              /// Email
+              Text(
+                email,
+                style: TextStyle(fontSize: 14, color: AppColors.lightShade),
+              ),
+
+              SizedBox(height: 25),
+
+              ListTile(
+                leading: Icon(EneftyIcons.edit_outline),
+                title: Text("Change Username"),
+                onTap: () => _editName(username),
+              ),
+
+              ListTile(
+                leading: Icon(Icons.privacy_tip_outlined),
+                title: Text("Privacy"),
+                onTap: () {},
+              ),
+
+              SizedBox(height: 50),
+
+              CommonButton(
+                text: "Save",
+                onTap: _saveProfile,
+                textColor: AppColors.white,
+                bgColor: AppColors.icon,
+              ),
+            ],
+          );
+        },
       ),
     );
   }

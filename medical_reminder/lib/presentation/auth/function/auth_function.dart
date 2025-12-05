@@ -1,35 +1,51 @@
-import 'package:hive_flutter/adapters.dart';
+import 'package:hive_flutter/hive_flutter.dart';
+import 'package:medical_reminder/presentation/auth/model/user_model.dart';
+import 'package:medical_reminder/presentation/profile/function/profile_function.dart';
+import 'package:medical_reminder/presentation/profile/model/profile_model.dart';
 import 'package:medical_reminder/presentation/bmi/model/bmi_model.dart';
 import 'package:medical_reminder/presentation/appointment/model/appointment_model.dart';
 import 'package:medical_reminder/presentation/medicine/model/medicine_model.dart';
 import 'package:medical_reminder/presentation/report/model/report_model.dart';
-import 'package:medical_reminder/presentation/auth/model/user_model.dart';
 
 class UserFunctions {
   final Box<UserModel> userBox = Hive.box<UserModel>('users');
-  Future<bool> addUser(UserModel user) async {
-    await userBox.put(user.email, user);
-    return true;
-  }
+
   static String? loggedInUserEmail;
 
-Future<bool> loginUser(String email, String password) async {
-  if (!userBox.containsKey(email)) return false;
+  Future<bool> addUser(UserModel user) async {
+    await userBox.put(user.email, user);
 
-  final user = userBox.get(email);
-  if (user!.password != password) return false;
+    // Create profile
+    final profileBox = await Hive.openBox<ProfileModel>('${user.email}_profile');
 
-  loggedInUserEmail = email;
+    final profile = ProfileModel(
+      username: user.username,
+      email: user.email,
+      imagePath: null,
+    );
 
-  await Hive.openBox<MedicineModel>('${email}_medicines');
-  await Hive.openBox<ReportModel>('${email}_reports');
-  await Hive.openBox<AppointmentModel>('${email}_appointments');
-  await Hive.openBox<BmiModel>('${email}_bmis');
+    await profileBox.put('profile', profile);
+    currentProfile.value = profile; // global update
 
-  return true;
-}
+    return true;
+  }
 
-  UserModel? getUser(String email) {
-    return userBox.get(email);
+  Future<bool> loginUser(String email, String password) async {
+    if (!userBox.containsKey(email)) return false;
+
+    final user = userBox.get(email);
+    if (user!.password != password) return false;
+
+    loggedInUserEmail = email;
+
+    await Hive.openBox<MedicineModel>('${email}_medicines');
+    await Hive.openBox<ReportModel>('${email}_reports');
+    await Hive.openBox<AppointmentModel>('${email}_appointments');
+    await Hive.openBox<BmiModel>('${email}_bmis');
+
+    final profileBox = await Hive.openBox<ProfileModel>('${email}_profile');
+    currentProfile.value = profileBox.get('profile');
+
+    return true;
   }
 }

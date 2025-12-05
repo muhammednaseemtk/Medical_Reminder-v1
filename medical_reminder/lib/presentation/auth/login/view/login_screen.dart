@@ -6,8 +6,6 @@ import 'package:medical_reminder/core/route/app_route.dart';
 import 'package:medical_reminder/core/theme/app_colors.dart';
 import 'package:medical_reminder/common/widget/custom_text_field.dart';
 import 'package:medical_reminder/presentation/auth/function/auth_function.dart';
-import 'package:medical_reminder/presentation/auth/model/user_model.dart';
-import 'package:medical_reminder/presentation/auth/sign_up/view/sign_up_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
@@ -21,15 +19,14 @@ class _LoginScreenState extends State<LoginScreen> {
   final TextEditingController _passwordController = TextEditingController();
   final formKey = GlobalKey<FormState>();
   final textData = TextConstant.login;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.white,
       body: Center(
         child: SingleChildScrollView(
-          scrollDirection: Axis.vertical,
           child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Container(
                 decoration: BoxDecoration(
@@ -51,23 +48,30 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: AppColors.white,
                 ),
               ),
+
               SizedBox(height: 15),
+
               Text(
                 textData['LoginTitle'],
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
               ),
+
               SizedBox(height: 10),
+
               Text(
                 textData['LoginText'],
-                style: TextStyle(color: Colors.black87, fontSize: 20),
+                style: TextStyle(fontSize: 20, color: Colors.black87),
               ),
+
               SizedBox(height: 30),
+
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Form(
                   key: formKey,
                   child: Column(
                     children: [
+                      // Email field
                       CustomTextField(
                         text: 'Email',
                         text1: 'Email',
@@ -76,11 +80,13 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (value == null || value.isEmpty) {
                             return "Email cannot be empty";
                           } else if (!value.contains('@gmail.com')) {
-                            return "invalid email";
+                            return "Invalid email";
                           }
                           return null;
                         },
                       ),
+
+                      // Password field
                       CustomTextField(
                         text: 'Password',
                         text1: 'Password',
@@ -89,12 +95,15 @@ class _LoginScreenState extends State<LoginScreen> {
                           if (value == null || value.isEmpty) {
                             return "Password cannot be empty";
                           } else if (value.length < 6) {
-                            return "At least 6 characters";
+                            return "At least 6 characters required";
                           }
                           return null;
                         },
                       ),
+
                       SizedBox(height: 10),
+
+                      // Login Button
                       CommonButton(
                         text: textData['LoginBtnText'],
                         onTap: () async {
@@ -102,11 +111,13 @@ class _LoginScreenState extends State<LoginScreen> {
                             final userFunc = UserFunctions();
                             final email = _emailController.text.trim();
                             final password = _passwordController.text.trim();
-                            final user = await userFunc.getUser(email);
-                            bool sucess = await userFunc.loginUser(email, password);
-                            if (sucess) {
+
+                            bool success =
+                                await userFunc.loginUser(email, password);
+
+                            if (success) {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Login Sucess')),
+                                SnackBar(content: Text('Login Success')),
                               );
                               Navigator.pushReplacementNamed(
                                 context,
@@ -114,7 +125,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               );
                             } else {
                               ScaffoldMessenger.of(context).showSnackBar(
-                                SnackBar(content: Text('Invalid Credantional')),
+                                SnackBar(content: Text('Invalid Credentials')),
                               );
                             }
                           }
@@ -122,22 +133,23 @@ class _LoginScreenState extends State<LoginScreen> {
                         textColor: AppColors.white,
                         bgColor: AppColors.btnColor,
                       ),
+
                       SizedBox(height: 20),
                     ],
                   ),
                 ),
               ),
-              SizedBox(height: 20),
+
+              // Signup link
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(textData['LoginTexts']),
                   TextButton(
-                    onPressed: () {
-                      Navigator.pushReplacementNamed(context, AppRoute.signUp);
-                    },
+                    onPressed: () =>
+                        Navigator.pushReplacementNamed(context, AppRoute.signUp),
                     child: Text(
-                      'Sign Up',
+                      "Sign Up",
                       style: TextStyle(color: AppColors.textColor),
                     ),
                   ),

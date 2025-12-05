@@ -65,13 +65,10 @@ class _AddingAppointmentState extends State<AddingAppointment> {
                       return null;
                     },
                   ),
-
                   SizedBox(height: 20),
-
                   GestureDetector(
                     onTap: () async {
                       DateTime? picked = await AppointmentDatePicker(context);
-
                       if (picked != null) {
                         setState(() {
                           dateController.text =
@@ -95,9 +92,7 @@ class _AddingAppointmentState extends State<AddingAppointment> {
                       ),
                     ),
                   ),
-
                   SizedBox(height: 15),
-
                   AddContainer(
                     text: 'Doctor name',
                     texts: 'name',
@@ -111,7 +106,6 @@ class _AddingAppointmentState extends State<AddingAppointment> {
                   ),
                 ],
               ),
-
               Column(
                 children: [
                   CommonButton(
@@ -123,11 +117,8 @@ class _AddingAppointmentState extends State<AddingAppointment> {
                           name: nameController.text.trim(),
                           date: dateController.text.trim(),
                         );
-
                         await addAppointment(appointment);
-
                         Navigator.pop(context);
-
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
                             content: Text("Appointment Added Successfully"),
@@ -138,7 +129,6 @@ class _AddingAppointmentState extends State<AddingAppointment> {
                     textColor: AppColors.white,
                     bgColor: AppColors.icon,
                   ),
-
                   SizedBox(height: 20),
                 ],
               ),
