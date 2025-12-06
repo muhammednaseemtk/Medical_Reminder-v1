@@ -26,6 +26,12 @@ class UserFunctions {
       email: user.email,
       imagePath: null,
     );
+    loggedInUserEmail = user.email;
+    log(loggedInUserEmail.toString());
+
+    final prefer = await SharedPreferences.getInstance();
+    prefer.setString('userEmail', user.email);
+    prefer.setBool('isLoggin', true);
 
     await profileBox.put('profile', profile);
     currentProfile.value = profile;
@@ -50,6 +56,10 @@ class UserFunctions {
     final profileBox = await Hive.openBox<ProfileModel>('${email}_profile');
     currentProfile.value = profileBox.get('profile');
     final prefer = await SharedPreferences.getInstance();
+
+    prefer.remove('userEmail');
+    prefer.remove('isLoggin'); 
+
     prefer.setBool('isLoggin', true);
     prefer.setString('userEmail', email);
 
@@ -62,6 +72,7 @@ class UserFunctions {
     final email = prefer.getString('userEmail');
 
     if(isloggin == true && email != null){
+    loggedInUserEmail = email;
     await Hive.openBox<MedicineModel>('${email}_medicines');
     await Hive.openBox<ReportModel>('${email}_reports');
     await Hive.openBox<AppointmentModel>('${email}_appointments');

@@ -1,5 +1,4 @@
 import 'dart:io';
-
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:medical_reminder/core/route/app_route.dart';

@@ -9,7 +9,7 @@ Future<Box<ProfileModel>> _profileBox() async {
   final email = UserFunctions.loggedInUserEmail;
   final boxName = '${email}_profile';
   return await Hive.openBox<ProfileModel>(boxName);
-}
+} 
 
 Future<void> loadProfile() async {
   final box = await _profileBox();

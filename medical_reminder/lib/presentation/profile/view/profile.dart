@@ -1,4 +1,5 @@
 import 'dart:io';
+import 'dart:developer'; // 👈 ADDED LOG
 import 'package:flutter/material.dart';
 import 'package:enefty_icons/enefty_icons.dart';
 import 'package:image_picker/image_picker.dart';
@@ -22,34 +23,53 @@ class _ProfileScreenState extends State<ProfileScreen> {
   @override
   void initState() {
     super.initState();
+    log("INIT: Loading profile...");
     loadProfile();
   }
 
   Future<void> _pickImage() async {
     try {
       final picker = ImagePicker();
+      log("IMAGE: Opening gallery...");
       final XFile? image = await picker.pickImage(source: ImageSource.gallery);
 
-      if (image == null) return;
+      if (image == null) {
+        log("IMAGE: No image selected.");
+        return;
+      }
+
+      log("IMAGE PICKED: ${image.path}");
 
       final directory = await getApplicationDocumentsDirectory();
       final newPath = '${directory.path}/${image.name}';
+
+      log("COPYING IMAGE TO: $newPath");
+
       final File newImage = await File(image.path).copy(newPath);
 
       setState(() => _imageFile = newImage);
+
+      log("IMAGE SAVED SUCCESSFULLY");
     } catch (e) {
-      print("Image pick error: $e");
+      log("IMAGE PICK ERROR: $e");
     }
   }
 
   void _editName(String currentName) {
+    log("EDIT NAME CLICKED: currentName = $currentName");
+
     showDialog(
       context: context,
       builder: (context) => EditNameDialog(
         currentName: currentName,
         onSave: (newName) {
+          log("NEW NAME SAVED: $newName");
+
           final profile = currentProfile.value;
-          if (profile == null) return;
+          if (profile == null) {
+            log("ERROR: Profile is null when saving name");
+            return;
+          }
 
           final updated = ProfileModel(
             username: newName,
@@ -65,7 +85,14 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
   Future<void> _saveProfile() async {
     final profile = currentProfile.value;
-    if (profile == null) return;
+
+    if (profile == null) {
+      log("SAVE PROFILE FAILED: profile null");
+      return;
+    }
+
+    log("SAVING PROFILE...");
+    log("NEW IMAGE PATH: ${_imageFile?.path}");
 
     final updatedProfile = ProfileModel(
       username: profile.username,
@@ -75,16 +102,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
     await saveProfile(updatedProfile);
 
+    log("PROFILE SAVED SUCCESSFULLY!");
+
     ScaffoldMessenger.of(context).showSnackBar(
-      SnackBar(
-        content: Text("Profile Updated Successfully"),
-        backgroundColor: AppColors.icon,
-      ),
+      SnackBar(content: Text("Profile Updated Successfully")),
     );
   }
 
   @override
   Widget build(BuildContext context) {
+    log("BUILDING PROFILE SCREEN");
+
     return Scaffold(
       backgroundColor: AppColors.white,
       appBar: AppBar(
@@ -98,18 +126,21 @@ class _ProfileScreenState extends State<ProfileScreen> {
         valueListenable: currentProfile,
         builder: (context, profile, _) {
           if (profile == null) {
+            log("PROFILE NULL → SHOW LOADER");
             return Center(child: CircularProgressIndicator());
           }
+
+          log("PROFILE LOADED: ${profile.username}, ${profile.email}"); 
 
           final username = profile.username;
           final email = profile.email;
           final imagePath = _imageFile?.path ?? profile.imagePath;
 
+          log("CURRENT IMAGE PATH: $imagePath");
+
           return Column(
             children: [
               SizedBox(height: 30),
-
-              /// Profile Image Section
               Center(
                 child: Stack(
                   children: [
@@ -151,39 +182,28 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ],
                 ),
               ),
-
               SizedBox(height: 15),
-
-              /// Username
               Text(
                 username,
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.w600),
               ),
-
               SizedBox(height: 5),
-
-              /// Email
               Text(
                 email,
                 style: TextStyle(fontSize: 14, color: AppColors.lightShade),
               ),
-
               SizedBox(height: 25),
-
               ListTile(
                 leading: Icon(EneftyIcons.edit_outline),
                 title: Text("Change Username"),
                 onTap: () => _editName(username),
               ),
-
               ListTile(
                 leading: Icon(Icons.privacy_tip_outlined),
                 title: Text("Privacy"),
                 onTap: () {},
               ),
-
               SizedBox(height: 50),
-
               CommonButton(
                 text: "Save",
                 onTap: _saveProfile,

@@ -48,9 +48,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   color: AppColors.white,
                 ),
               ),
-
               SizedBox(height: 15),
-
               Text(
                 textData['LoginTitle'],
                 style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
@@ -62,9 +60,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 textData['LoginText'],
                 style: TextStyle(fontSize: 20, color: Colors.black87),
               ),
-
               SizedBox(height: 30),
-
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 20),
                 child: Form(
@@ -86,7 +82,6 @@ class _LoginScreenState extends State<LoginScreen> {
                         },
                       ),
 
-                      // Password field
                       CustomTextField(
                         text: 'Password',
                         text1: 'Password',
@@ -100,10 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           return null;
                         },
                       ),
-
                       SizedBox(height: 10),
-
-                      // Login Button
                       CommonButton(
                         text: textData['LoginBtnText'],
                         onTap: () async {
@@ -139,8 +131,6 @@ class _LoginScreenState extends State<LoginScreen> {
                   ),
                 ),
               ),
-
-              // Signup link
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
